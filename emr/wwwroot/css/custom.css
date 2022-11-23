@@ -1,0 +1,317 @@
+/*DL, DT, DD TAGS LIST DATA*/
+dl.dl-horizontal {
+    margin-bottom: 30px;
+}
+
+    dl.dl-horizontal dt {
+        background: #5f9be3;
+        color: #fff;
+        float: left;
+        font-weight: bold;
+        margin-right: 10px;
+        padding: 5px;
+        width: 220px;
+    }
+
+    dl.dl-horizontal dd {
+        margin: 2px 0;
+        padding: 5px 0;
+        width: 100%;
+    }
+
+.breadcrumb {
+    /*background: #ccc;*/
+    padding: 0;
+    background: transparent;
+    margin-left: -10px;
+}
+
+    .breadcrumb a {
+        margin-left: 10px;
+        margin-right: 10px;
+        text-decoration: none;
+    }
+
+    .breadcrumb > .last {
+        color: #8b8b8b;
+        font-weight: bold;
+    }
+
+        .breadcrumb > .last:hover {
+            color: #5c5c5c;
+            font-weight: bold;
+        }
+
+.command-box {
+    margin-bottom: 10px;
+    /*display: inline-block;*/
+}
+
+    .command-box a {
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+input:focus:required:invalid, textarea:focus:required:invalid, select:focus:required:invalid {
+    color: #b94a48;
+    border-color: #ee5f5b
+}
+
+    input:focus:required:invalid:focus, textarea:focus:required:invalid:focus,
+    select:focus:required:invalid:focus {
+        border-color: #e9322d;
+        -webkit-box-shadow: 0 0 6px #f8b9b7;
+        -moz-box-shadow: 0 0 6px #f8b9b7;
+        box-shadow: 0 0 6px #f8b9b7;
+    }
+
+.tab-content {
+    margin-top: 20px;
+}
+
+
+
+
+.nav-tabs > .active > a {
+    border-top-color: red;
+}
+
+.entry-page-box {
+    background: rgb(256, 256, 256);
+    background: rgba(256, 256, 256, 0.7);
+    padding-left: 18px;
+    padding-right: 18px;
+    border: 2px solid #FFF;
+    border-radius: 25px;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+}
+
+.navbar-brand {
+    padding: 6px 15px;
+    width: 100%;
+    max-width: 227px;
+}
+
+.jumbotron {
+    padding: 24px;
+}
+
+@media ( min-width : 768px) {
+    .sidebar {
+        margin-top: 0px;
+    }
+}
+
+.navbar-inverse {
+    background-color: #0f6eb7;
+    background-image: linear-gradient(to bottom, #0f6eb7 0, #0a4d80 100%);
+    border-radius: 0;
+}
+
+    .navbar-inverse .navbar-text {
+        font-size: 14pt;
+        color: #ffffff;
+        margin-top: 15px;
+        margin-bottom: 7px;
+        margin-left: 30px;
+    }
+
+.navbar-admin {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > .active > a
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: transparent;
+    background-image: none;
+    /* ToDo: use dynamic gradient
+    linear-gradient(to top, rgba(0, 0, 255, 1), rgba(0, 0, 128, 1));
+    */
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.progress {
+    background-color: #acacac;
+    background-image: none;
+    white-space: nowrap;
+}
+
+.progress-bar > span {
+    padding-left: 10px;
+}
+
+.module li {
+    list-style: none;
+}
+
+.module .section {
+    font-weight: bold;
+}
+
+.module .link {
+    margin-left: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Force table to not be like tables anymore */
+    #no-more-tables table, #no-more-tables thead, #no-more-tables tbody,
+    #no-more-tables th, #no-more-tables td, #no-more-tables tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #no-more-tables thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    #no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+        #no-more-tables td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /*
+	Label the data
+	*/
+        #no-more-tables td:before {
+            content: attr(data-title);
+        }
+}
+
+.modal-header {
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/*
+* Announcements
+*/
+.announcements-total {
+    color: #4a4a4a;
+    font-size: 12px;
+}
+
+.announcements-view a {
+    font-size: 12px;
+}
+
+.announcement {
+    font-size: 14px;
+    border-bottom: 1px solid #ababab;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.announcement-heading {
+    font-weight: bolder;
+    margin-bottom: 2px;
+}
+
+.announcement-author {
+    font-style: italic;
+}
+
+.announcement-subject {
+    font-size: 16px;
+    color: #505050;
+    margin-bottom: 2px;
+}
+
+/*
+* Person Notes
+*/
+.notes-total {
+    color: #4a4a4a;
+    font-size: 12px;
+}
+
+.notes-view a {
+    font-size: 12px;
+}
+
+.notes {
+    border: 1px solid #ddd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.note {
+    font-size: 12px;
+    border-bottom: 1px solid #ababab;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.note-heading {
+    font-weight: bolder;
+    margin-bottom: 2px;
+}
+
+.note-author {
+    font-style: italic;
+}
+
+.note-subject {
+    font-size: 14px;
+    color: #505050;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.logo_img {
+    width: 100%;
+    max-width: 300px;
+}
+
+.stay-top-right {
+    position: fixed;
+    z-index: 100;
+    right: -50px;
+    top: 200px
+}
+
+.inline_radio li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 20px;
+}
+/*fix text overlay in cell
+*/
+.table-responsive {
+    table-layout: fixed;
+    word-wrap: break-word;
+}

@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Http;
+<nav class="navbar navbar-inverse" role="navigation" style="margin-bottom: 0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="https://emr2.galencollege.dev/emr/general/General">
+                <img src="~/img//galen_logo_head.png" alt="">
+            </a>
+
+        </div>
+
+        <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="https://emr2.galencollege.dev/emr/general/General#" class="dropdown-toggle"
+                       data-toggle="dropdown" role="button" aria-expanded="false">
+                        <div class="navbar-admin">@Context.Session.GetString("personName") <span class="caret"></span></div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <!-- Removed settings menu for version 1 -->
+                        <!--<li><a href="/emr/general/general/my_profile"><i class="fa fa-user"></i> User profile</a></li>-->
+                        <!--<li><a href="/emr/general/general/my_settings"><i class="fa fa-gears"></i> Settings</a></li>-->
+                        <li class="divider"></li>
+                        <li></li>
+                        <li></li>
+                        <li>
+                            <a href="https://emr2.galencollege.dev/emr/help">
+                                <i class="fa fa-question-circle"></i>
+                                Help
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="https://emr2.galencollege.dev/emr/admin/Users/logout">
+                                <i class="fa fa-sign-out"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

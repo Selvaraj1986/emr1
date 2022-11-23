@@ -1,0 +1,58 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>
+            /<a href="/PatientCodeStatuses/edit/@Model.id">Edit Code Statuses</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="form-group">
+                                <label for="PatientCodeStatusRecordDate" class="control-label">Record Date</label>
+                                <input type="hidden" asp-for="codeStatusesModel.id" />
+                                <input asp-for="codeStatusesModel.record_date" class="form-control" />
+                                <span asp-validation-for="@Model.codeStatusesModel.record_date" class="text-danger"></span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="PatientCodeStatusCodeStatus" class="control-label">Code Status</label>
+
+                                <select id="codeStatusesModel.code_status" class="form-control col-md-8" name="codeStatusesModel.code_status"
+                                        asp-for="@Model.codeStatusesModel.code_status">
+                                    <option value="">-- Choose Code Status --</option>
+                                    <optgroup label="code_status">
+                                        <option value="DNR">DNR</option>
+                                        <option value="Full Code">Full Code</option>
+                                        <option value="Limited Code">Limited Code</option>
+                                    </optgroup>
+
+                                </select>
+                                <span asp-validation-for="@Model.codeStatusesModel.code_status" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="PatientCodeStatusNotes" class="control-label">Notes</label>
+                                <textarea asp-for="codeStatusesModel.notes" class="form-control"></textarea>
+                                <span asp-validation-for="@Model.codeStatusesModel.notes" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save  Code Status">
+                            <a href="/Patients/view/@Model.codeStatusesModel.patient_id/#code_statuses" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

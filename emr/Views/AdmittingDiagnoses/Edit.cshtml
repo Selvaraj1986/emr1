@@ -1,0 +1,56 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/PatientAdmittingDiagnoses/edit/@Model.id">Edit Admitting Diagnosis</a>
+        </div>
+       <partial name="_PatientsInfo" model="@Model" />
+
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Admitting Diagnosis</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group required">
+                                    <label for="PatientAdmittingDiagnosisRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="admittingDiagnosesModel.id" />
+                                    <input asp-for="admittingDiagnosesModel.record_date" class="form-control" />
+                                    <span asp-validation-for="@Model.admittingDiagnosesModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientAdmittingDiagnosisDiagnosis" class="control-label">Diagnosis</label>
+                                    <textarea asp-for="admittingDiagnosesModel.diagnosis" class="form-control" ></textarea>
+                                    <span asp-validation-for="@Model.admittingDiagnosesModel.diagnosis" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Admitting Diagnosis">
+                            <a href="/Patients/view/@Model.admittingDiagnosesModel.patient_id/#diagnoses" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

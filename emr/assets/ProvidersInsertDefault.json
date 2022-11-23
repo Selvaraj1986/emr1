@@ -1,0 +1,30 @@
+[
+
+  {
+    "name": "Dr. Smith",
+    "creator_id": 1,
+    "modifier_id": 1,
+    "course_id": 0
+  },
+
+  {
+    "name": "Dr. Roy",
+    "creator_id": 1,
+    "modifier_id": 1,
+    "course_id": 0
+  },
+
+  {
+    "name": "Dr. Payne",
+    "creator_id": 1,
+    "modifier_id": 1,
+    "course_id": 0
+  },
+
+  {
+    "name": "Dr. Anderson",
+    "creator_id": 1,
+    "modifier_id": 1,
+    "course_id": 0
+  }
+]

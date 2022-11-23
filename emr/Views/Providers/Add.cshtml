@@ -1,0 +1,50 @@
+﻿@model emr.Models.providers
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Providers">Health Providers</a>/<a href="/Providers/add">Add</a>
+        </div>
+
+        <h1>Add Provider</h1>
+        <div class="row-fluid">
+            <form asp-action="Add">
+                <div class="col-md-8">
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Provider</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group required">
+                                    <label for="ProviderName" class="control-label">Name</label>
+                                    <input asp-for="name" class="form-control" />
+                                    <span asp-validation-for="name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ProviderNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="notes" class="form-control" ></textarea>
+                                    <span asp-validation-for="notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Create Provider">
+                            <a href="/Providers" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

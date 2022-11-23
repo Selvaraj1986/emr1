@@ -1,0 +1,74 @@
+﻿@model emr.Models.Model.ProvidersModel
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Providers">Health Providers</a>/<a href="/Providers/view/@Model.id">
+                @Model.name
+            </a>
+        </div>
+
+        <h4>@Model.name</h4>
+
+        <div class="command-box">
+            <a href="/Providers/edit/@Model.id" class="btn btn-success btn-sm">Edit Details</a>
+            <a href="/Providers/delete/@Model.id" class="btn btn-danger btn-sm" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { document.post_6360c3b424050790502082.submit(); } event.returnValue = false; return false;">Delete Provider</a>
+        </div>
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="providerTab">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Provider</a></li>
+                <!--  <li role="presentation"><a href="#patient" aria-controls="address" role="tab" data-toggle="tab">Patient</a></li>-->
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Id</td>
+                                <td>@Model.id</td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td>@Model.name</td>
+                            </tr>
+                            <tr>
+                                <td>Notes</td>
+                                <td>@Model.notes</td>
+                            </tr>
+                            <tr>
+                                <td>Creator</td>
+                                <td>@Model.creator</td>
+                            </tr>
+                            <tr>
+                                <td>Created</td>
+                                <td>@Model.created</td>
+                            </tr>
+                            <tr>
+                                <td>Modifier</td>
+                                <td>@Model.modifier</td>
+                            </tr>
+                            <tr>
+                                <td>Modified</td>
+                                <td>@Model.modified</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

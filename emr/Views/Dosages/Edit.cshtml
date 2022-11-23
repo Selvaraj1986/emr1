@@ -1,0 +1,69 @@
+﻿@model emr.Models.dosages
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Medications">Medication</a>/
+            <a href="/Medications/view/@Model.medication_id">@Model.name</a>/<a href="/Medications/view/@Model.medication_id">@Model.ingredient</a>/<a href="/Dosage/edit/@Model.medication_id">Edit</a>
+        </div>
+        <h1>Edit Dosage</h1>
+        <form asp-action="Update">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Dosage</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group">
+                                    <label for="DosageName" class="control-label">Name</label>
+                                    <input type="hidden" asp-for="id" />
+                                    <input type="hidden" asp-for="creator_id" />
+                                    <input type="hidden" asp-for="created" />
+                                    <input type="hidden" asp-for="medication_id" />
+                                    <input asp-for="name" class="form-control" />
+                                    <span asp-validation-for="name" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="DosageIngredient" class="control-label">Ingredient</label>
+                                    <input asp-for="ingredient" class="form-control" />
+                                    <span asp-validation-for="ingredient" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DosageForm" class="control-label">Form</label>
+                                    <select id="form" class="form-control col-md-8" name="form"
+                                            asp-for="form"
+                                            asp-items="@ViewBag.forms">
+                                        <option value="">-- Choose Dosage Form --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DosageDosage" class="control-label">Dosage</label>
+                                    <input asp-for="dosage" class="form-control" />
+                                    <span asp-validation-for="dosage" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well" style="margin-top:40px;">
+                    <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                    <div>
+                        <input class="btn btn-success btn-sm" type="submit" value="Save Dosage">
+                        <a href="/Medications/view/@Model.medication_id/#dosages" class="btn btn-danger btn-sm">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

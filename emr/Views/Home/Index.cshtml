@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>
+        </div>
+        <div style="display: none;" id="warning">
+            <div class="text-danger">
+                To have a better view, please click
+                <a href="/emr/" target="_blank" class="btn btn-danger">here</a> to
+                open this application in new window. Thank you.
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Announcements</h1>
+                <div class="announcements">
+                    <p>No Announcements</p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $("#warning").hide();
+                if (isIframe()) {
+                    $("#warning").show();
+                }
+            });
+        </script>
+    </div>
+</div>

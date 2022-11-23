@@ -1,0 +1,130 @@
+﻿<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>
+        </div>
+
+        <div class="command-box">
+            <a href="/Patients/add" class="btn btn-success btn-sm">Add Patient</a>
+        </div>
+        <div class="well" id="searchBar">
+            <div class="form-group">
+                <input name="SearchKeywords" class="form-control" placeholder="Search..." size="50" type="text" id="SearchKeywords">
+            </div>
+        </div>
+        <section id="no-more-tables">
+            <div class="table-responsive">
+                <script>
+
+                    $(document).ready(function () {
+                        $(".loader").show();
+                        //Call Medications jsonResult Method
+                        $.getJSON("/Patients/GetAll",
+                            function (json) {
+                                var tr;
+                                //Append each row to html table
+                                for (var i = 0; i < json.length; i++) {
+                                    tr = $('<tr/>');
+                                    tr.append('<td><a href="/Patients/View/' + json[i].id + '">' + json[i].id + '</a></td>');
+                                    tr.append("<td>#" + json[i].medical_number + "</td>");
+                                    tr.append("<td>" + json[i].first_name + "</td>");
+                                    tr.append("<td>" + json[i].last_name + "</td>");
+                                    tr.append("<td>" + json[i].dob + "</td>");
+                                    tr.append("<td>" + json[i].gender + "</td>");
+                                    tr.append("<td>" + json[i].provider + "</td>");
+                                    if (json[i].locks == false) {
+                                        tr.append('<td><a href="/Patients/togglelock/' + json[i].id + '" class="btn btn-success"><i class="fa fa-unlock"></i></a></td>');
+                                    }
+                                    else {
+                                        console.log(json[i].locks);
+                                        tr.append('<td><a href="/Patients/togglelock/' + json[i].id + '" class="btn btn-danger"><i class="fa fa-lock"></i></a></td>');
+                                    }
+                                    tr.append('<td><a class="clone_patient_icon" href="#" onclick="show_clone_modal(4210)"><i class="fa fa-clone text-info fa-lg"></i></a></td>');
+                                    $('table').append(tr);
+                                }
+                                var table = $('#PatientsInfo').DataTable({
+                                    order: [[2, 'asc']],
+                                });
+
+                                $('#SearchKeywords').on('keyup', function () {
+                                    //set search text on specific column
+                                    table.search(this.value).draw();
+                                });
+                                $(".loader").hide();
+                            });
+                    });
+
+                </script>
+                <div class="loader"></div>
+                <table id="PatientsInfo" class="display nowrap dataTable dtr-inline collapsed" style="width:99%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Medical Number</th>
+                            <th>Lastname</th>
+                            <th>Firstname</th>
+                            <th>Gender</th>
+                            <th>DOB</th>
+                            <th>Provider</th>
+                            <th>Lock</th>
+                            <th>Copy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="modal fade" id="637370f0-84dc-4786-8636-7efac0a806c9">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="637370f0-84dc-4786-8636-7efac0a806c9_title">Clone Patient</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                        </p>
+                        <form action="/emr/general/patients/clone_patient" role="form" id="PatientClonePatientForm" method="post" accept-charset="utf-8">
+                            <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[Patient][patient_id]" value="0" id="PatientPatientId">
+                            <div class="form-group">
+                                <label for="PatientDestination" class="control-label">Destination Course</label>
+                                <select name="data[Patient][destination]" class="form-control" id="PatientDestination">
+                                    <option value="">-- Choose --</option>
+                                </select>
+                            </div><div class="form-group">
+                                <label for="PatientCopyCounter" class="control-label">Copy Count:</label>
+                                <input name="data[Patient][copy_counter]" class="form-control" value="1" type="text" id="PatientCopyCounter">
+                            </div>
+                            <div class="form-group">
+                                <label for="PatientRecordDate" class="control-label">Reset Record Date To: (leave as blank for no change)</label>
+                                <input name="data[Patient][record_date]" class="form-control datepicker hasDatepicker" type="text" id="PatientRecordDate">
+                            </div>
+                            <p></p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input class="btn btn-primary" type="submit" value="Clone">
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <script type="text/javascript">
+            function show_clone_modal(patient_id) {
+                $("#PatientPatientId").val(patient_id);
+                $('#637370f0-84dc-4786-8636-7efac0a806c9_title').empty();
+                $('#637370f0-84dc-4786-8636-7efac0a806c9_title').append("Copy Patient ID: " + patient_id);
+
+                $('#637370f0-84dc-4786-8636-7efac0a806c9').modal('show');
+                return false;
+            }
+
+        </script>
+    </div>
+</div>

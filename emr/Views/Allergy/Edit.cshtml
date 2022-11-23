@@ -1,0 +1,67 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/PatientAllergys/edit/@Model.id">Edit Allergy</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Allergy</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="PatientAllergyRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="allergyModel.id" />
+                                    <input asp-for="allergyModel.record_date" class="form-control" />
+                                    <span asp-validation-for="@Model.allergyModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientAllergyAllergyType" class="control-label">Allergy Type</label>
+                                    <select id="allergyModel.allergy_type" class="form-control col-md-8" name="allergyModel.allergy_type"
+                                            asp-for="@Model.allergyModel.allergy_type">
+                                        <option value="">-- Choose Allergy Type --</option>
+                                        <optgroup label="allergy_type">
+                                            <option value="Drug">Drug</option>
+                                            <option value="Environmental">Environmental</option>
+                                            <option value="Food">Food</option>
+                                            <option value="Latex">Latex</option>
+                                            <option value="Other">Other</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientAllergyAllergy" class="control-label">Allergy</label>
+                                    <textarea asp-for="allergyModel.allergy" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.allergyModel.allergy" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Allergy">
+                            <a href="/Patients/view/@Model.allergyModel.patient_id/#allergies" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

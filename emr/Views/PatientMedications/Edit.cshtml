@@ -1,0 +1,77 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/PatientMedications/edit/@Model.id">Edit Medication</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Medication</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group">
+                                    <input type="hidden" asp-for="patientMedicationsModel.id" />
+                                    <label for="PatientMedicationRecordDate" class="control-label">Record Date</label>
+                                    <input asp-for="patientMedicationsModel.record_date" class="form-control" />
+                                    <span asp-validation-for="@Model.patientMedicationsModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PatientMedicationMedication" class="control-label">Medication</label>
+                                    <input asp-for="patientMedicationsModel.medication" class="form-control" />
+                                    <span asp-validation-for="@Model.patientMedicationsModel.medication" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PatientMedicationDose" class="control-label">Dose</label>
+                                    <input asp-for="patientMedicationsModel.dose" class="form-control" />
+                                    <span asp-validation-for="@Model.patientMedicationsModel.dose" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PatientMedicationFrequency" class="control-label">Frequency</label>
+                                    <input asp-for="patientMedicationsModel.frequency" class="form-control" />
+                                    <span asp-validation-for="@Model.patientMedicationsModel.frequency" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label for="PatientMedicationTakenToday">
+                                            <input type="checkbox" name="patientMedicationsModel.taken_today" value="@Model.patientMedicationsModel.taken_today" checked="@Model.patientMedicationsModel.taken_today" /> Taken Today
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label for="PatientMedicationBroughtWith">
+                                            <input type="checkbox" name="patientMedicationsModel.brought_with" value="@Model.patientMedicationsModel.brought_with" checked="@Model.patientMedicationsModel.brought_with" />  Brought With
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Medication">
+                            <a href="/Patients/view/@Model.patientMedicationsModel.patient_id/#medications" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

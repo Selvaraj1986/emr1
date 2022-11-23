@@ -1,0 +1,174 @@
+﻿@model emr.Models.Model.MedicationsModel
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Medications">Medications</a>/<a href="/Medications/view/@Model.id">
+                @Model.generic
+            </a>
+        </div>
+
+        <h4>@Model.generic</h4>
+
+        <div class="command-box">
+            <a href="/Medications/edit/@Model.id" class="btn btn-success btn-sm">Edit Details</a>
+            <a href="/Medications/delete/@Model.id" class="btn btn-danger btn-sm" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { document.post_635fb5ebe2e6a417906230.submit(); } event.returnValue = false; return false;">Delete Medication</a>
+        </div>
+
+
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="medicationTab">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Medication</a></li>
+                <li role="presentation"><a href="#dosages" aria-controls="address" role="tab" data-toggle="tab">Dosages</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Id</td>
+                                <td>@Model.id</td>
+                            </tr>
+                            <tr>
+                                <td>Generic</td>
+                                <td>@Model.generic</td>
+                            </tr>
+                            <tr>
+                                <td>Brand</td>
+                                <td>@Model.brand</td>
+                            </tr>
+                            <tr>
+                                <td>Classification</td>
+                                <td>@Model.classification</td>
+                            </tr>
+                            <tr>
+                                <td>Creator</td>
+                                <td>@Model.creator</td>
+                            </tr>
+                            <tr>
+                                <td>Created</td>
+                                <td>@Model.created</td>
+                            </tr>
+                            <tr>
+                                <td>Modifier</td>
+                                <td>@Model.modifier</td>
+                            </tr>
+                            <tr>
+                                <td>Modified</td>
+                                <td>@Model.modified</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dosages">
+                    <div class="modal fade" id="635fb5eb-a678-4950-859b-7bc4c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Dosage</h4>
+                                </div>
+                                <form asp-action="AddDosage" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="DosageName" class="control-label">Name</label>
+                                            <input asp-for="dosages.name" class="form-control" />
+                                            <span asp-validation-for="@Model.dosages.name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DosageIngredient" class="control-label">Ingredient</label>
+                                            <input asp-for="dosages.ingredient" class="form-control" />
+                                            <span asp-validation-for="@Model.dosages.ingredient" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DosageForm" class="control-label">Form</label>
+                                            <select id="dosages.form" class="form-control col-md-8" name="dosages.form"
+                                                    asp-for="@Model.dosages.form"
+                                                    asp-items="@ViewBag.forms">
+                                                <option value="">-- Choose Dosage Form --</option>
+                                            </select>
+                                            <span asp-validation-for="@Model.dosages.form" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DosageDosage" class="control-label">Dosage</label>
+                                            <input asp-for="dosages.dosage" class="form-control" />
+                                            <span asp-validation-for="@Model.dosages.dosage" class="text-danger"></span>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Dosage">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="dosage_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+
+                                    </td>
+                                    <td>Name</td>
+                                    <td>Ingredient</td>
+                                    <td>Form</td>
+                                    <td>Dosage</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.dosageModel)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Dosages/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Dosages/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.name</td>
+                                        <td>@item.ingredient</td>
+                                        <td>@item.form</td>
+                                        <td>@item.dosage</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <script type="text/javascript">
+
+                        $(function () {
+                            console.log(window.location.hash);
+                            $('#medicationTab a[href="' + window.location.hash + '"]').tab('show');
+                            $('#dosage_plus').click(function () {
+                                $('#635fb5eb-a678-4950-859b-7bc4c0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

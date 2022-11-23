@@ -1,0 +1,64 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/PatientHeights/edit/@Model.id">Edit Height</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+            <div class="col-md-8">
+             
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Height</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group">
+                                    <label for="PatientHeightRecordDate" class="control-label">Record Date</label>
+                                    <input asp-for="heightsModel.record_date" class="form-control" />
+                                    <input type="hidden" asp-for="heightsModel.id" />
+                                    <span asp-validation-for="@Model.heightsModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientHeightHeight" class="control-label">Height</label>
+                                    <input asp-for="heightsModel.height" class="form-control" />
+                                    <span asp-validation-for="@Model.heightsModel.height" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientHeightHeightUnit" class="control-label">Height Unit</label>
+                                    <select id="heightsModel.height_unit" class="form-control col-md-8" name="heightsModel.height_unit"
+                                            asp-for="@Model.heightsModel.height_unit">
+                                        <option value="">-- Choose Height Unit --</option>
+                                        <optgroup label="height_unit">
+                                            <option value="cm">cm</option>
+                                            <option value="in">in</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+              
+            </div>
+
+            <div class="col-md-4">
+                <div class="well" style="margin-top:40px;">
+                    <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                    <div>
+                        <input class="btn btn-success btn-sm" type="submit" value="Save Height">
+                            <a href="/Patients/view/@Model.heightsModel.patient_id/#heights" class="btn btn-danger btn-sm">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

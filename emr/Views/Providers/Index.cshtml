@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Providers">Health Providers</a>
+        </div>
+
+        <div class="command-box">
+            <a href="/Providers/Add" class="btn btn-success btn-sm">Add Provider</a>
+        </div>
+        <div class="well" id="searchBar">
+            <div class="form-group">
+                <input name="SearchKeywords" class="form-control" placeholder="Search..." size="50" type="text" id="SearchKeywords">
+            </div>
+        </div>
+        <section id="no-more-tables">
+            <div class="table-responsive">
+                <script>
+                    $(document).ready(function () {
+                        $(".loader").show();
+                        $.getJSON("/Providers/GetAll",
+                            function (json) {
+                                var tr;
+                                //Append each row to html table
+                                for (var i = 0; i < json.length; i++) {
+                                    tr = $('<tr/>');
+                                    tr.append('<td><a href="/Providers/View/' + json[i].id + '">' + json[i].id + '</a></td>');
+                                    tr.append("<td>" + json[i].name + "</td>");
+                                    tr.append("<td>" + json[i].notes + "</td>");
+                                    $('table').append(tr);
+
+                                }
+                                var table = $('#ProvidersInfo').DataTable({
+                                    order: [[1, 'asc']],
+                                });
+                                $('#SearchKeywords').on('keyup', function () {
+                                    table.search(this.value).draw();
+                                });
+                                $(".loader").hide();
+                            });
+                    });
+
+                </script>
+                <div class="loader"></div>
+                <table id="ProvidersInfo" class="display nowrap dataTable dtr-inline collapsed" style="width:99%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </div>
+</div>

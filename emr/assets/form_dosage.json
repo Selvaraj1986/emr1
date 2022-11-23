@@ -1,0 +1,83 @@
+[
+ 
+  {
+    "FormID": "1",
+    "FormDesc": "10ml VIAL"
+  },
+  {
+    "FormID": "2",
+    "FormDesc": "AEROSOL, METERED"
+  },
+  {
+    "FormID": "3",
+    "FormDesc": "CAPSULE"
+  },
+  {
+    "FormID": "4",
+    "FormDesc": "CAPSULE, EXTENDED RELEASE"
+  },
+  {
+    "FormID": "5",
+    "FormDesc": "CONCENTRATE"
+  },
+  {
+    "FormID": "6",
+    "FormDesc": "CREAM"
+  },
+  {
+    "FormID": "7",
+    "FormDesc": "ELIXIR"
+  },
+  {
+    "FormID": "8",
+    "FormDesc": "EMULSION"
+  },
+  {
+    "FormID": "9",
+    "FormDesc": "FILM, EXTENDED RELEASE"
+  },
+  {
+    "FormID": "10",
+    "FormDesc": "FOR SUSPENSION, DELAYED RELEASE"
+  },
+  {
+    "FormID": "11",
+    "FormDesc": "INHALATION"
+  },
+  {
+    "FormID": "12",
+    "FormDesc": "INJECTABLE"
+  },
+  {
+    "FormID": "13",
+    "FormDesc": "IV INFUSION"
+  },
+  {
+    "FormID": "14",
+    "FormDesc": "IVPB"
+  },
+  {
+    "FormID": "15",
+    "FormDesc": "LIQUID"
+  },
+  {
+    "FormID": "16",
+    "FormDesc": "NEBULIZER/INHALATION"
+  },
+  {
+    "FormID": "17",
+    "FormDesc": "OINTMENT"
+  },
+  {
+    "FormID": "18",
+    "FormDesc": "ORAL CONCENTRATE"
+  },
+  {
+    "FormID": "19",
+    "FormDesc": "ORAL SOLUTION"
+  },
+  {
+    "FormID": "20",
+    "FormDesc": "ORAL SUSPENSION"
+  }
+]

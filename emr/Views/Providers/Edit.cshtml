@@ -1,0 +1,54 @@
+﻿@model emr.Models.Model.ProvidersModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Providers">Health Provider</a>/<a href="/Providers/view/@Model.id">@Model.name</a>/
+            <a href="/Providers/edit/@Model.id">Edit</a>
+        </div>
+        <h1>Edit Provider</h1>
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Provider</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group required">
+                                    <label for="ProviderName" class="control-label">Name</label>
+                                    <input type="hidden" asp-for="id" />
+                                    <input type="hidden" asp-for="creator_id" />
+                                    <input type="hidden" asp-for="created" />
+                                    <input asp-for="name" class="form-control" />
+                                    <span asp-validation-for="name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ProviderNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="notes" class="form-control"></textarea>
+                                    <span asp-validation-for="notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Provider">
+                            <a href="/Providers/view/@Model.id" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

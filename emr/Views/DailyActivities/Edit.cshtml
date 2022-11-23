@@ -1,0 +1,122 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/DailyActivities/edit/@Model.id">Edit Activity</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Activity</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group required">
+                                    <label for="DailyActivityRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="dailyActivitiesModel.id" />
+                                    <input asp-for="dailyActivitiesModel.record_date" class="form-control" />
+                                    <span asp-validation-for="@Model.dailyActivitiesModel.record_date" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="DailyActivityBathing" class="control-label">Bathing</label>
+                                    <select id="dailyActivitiesModel.bathing" class="form-control col-md-8" name="dailyActivitiesModel.bathing"
+                                            asp-for="@Model.dailyActivitiesModel.bathing">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityDressing" class="control-label">Dressing</label>
+                                    <select id="dailyActivitiesModel.dressing" class="form-control col-md-8" name="dailyActivitiesModel.dressing"
+                                            asp-for="@Model.dailyActivitiesModel.dressing">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityGrooming" class="control-label">Grooming</label>
+                                    <select id="dailyActivitiesModel.grooming" class="form-control col-md-8" name="dailyActivitiesModel.grooming"
+                                            asp-for="@Model.dailyActivitiesModel.grooming">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityOralCare" class="control-label">Oral Care</label>
+                                    <select id="dailyActivitiesModel.oral_care" class="form-control col-md-8" name="dailyActivitiesModel.oral_care"
+                                            asp-for="@Model.dailyActivitiesModel.oral_care">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityToileting" class="control-label">Toileting</label>
+                                    <select id="dailyActivitiesModel.toileting" class="form-control col-md-8" name="dailyActivitiesModel.toileting"
+                                            asp-for="@Model.dailyActivitiesModel.toileting">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityTransferring" class="control-label">Transferring</label>
+                                    <select id="dailyActivitiesModel.transferring" class="form-control col-md-8" name="dailyActivitiesModel.transferring"
+                                            asp-for="@Model.dailyActivitiesModel.transferring">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityWalking" class="control-label">Walking</label>
+                                    <select id="dailyActivitiesModel.walking" class="form-control col-md-8" name="dailyActivitiesModel.walking"
+                                            asp-for="@Model.dailyActivitiesModel.walking">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div><div class="form-group">
+                                    <label for="DailyActivityEating" class="control-label">Eating</label>
+                                    <select id="dailyActivitiesModel.eating" class="form-control col-md-8" name="dailyActivitiesModel.eating"
+                                            asp-for="@Model.dailyActivitiesModel.eating">
+                                        <option value="">-- Choose --</option>
+                                        <option value="1">Independent</option>
+                                        <option value="2">With Assistance</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DailyActivityNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="dailyActivitiesModel.notes" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.dailyActivitiesModel.notes" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Activity">
+                            <a href="/Patients/view/@Model.dailyActivitiesModel.patient_id/#daily_activities" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

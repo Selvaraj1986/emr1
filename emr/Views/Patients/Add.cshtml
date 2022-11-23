@@ -1,0 +1,86 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/emr/general/Patients">Patients</a>/<a href="/emr/general/Patients/add">Add</a>
+        </div>
+
+        <h1>Add Patient</h1>
+        <div class="row-fluid">
+            <form asp-action="Add">
+                <div class="col-md-8">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="form-group">
+                                <label for="PatientMedicalNumber" class="control-label">Medical Record Number</label>
+                                <input asp-for="medical_number" class="form-control" />
+                                <span asp-validation-for="medical_number" class="text-danger"></span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="PatientFirstName" class="control-label">First Name</label>
+                                <input asp-for="first_name" class="form-control" />
+                                <span asp-validation-for="first_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="PatientLastName" class="control-label">Last Name</label>
+                                <input asp-for="last_name" class="form-control" />
+                                <span asp-validation-for="last_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="PatientGender" class="control-label">Gender</label>
+                                <select id="gender" class="form-control col-md-8" name="gender"
+                                        asp-for="gender"
+                                        asp-items="@ViewBag.sex">
+                                    <option value="">-- Choose Sex --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="PatientDob" class="control-label">DOB</label>
+                                <input asp-for="dob" class="form-control datepicker" type="text" id="PatientDob" />
+                                <span asp-validation-for="dob" class="text-danger"></span>
+                            </div>
+                          
+                            <div class="form-group required">
+                                <label for="PatientProviderId" class="control-label">Provider</label>
+                                <select id="provider_id" class="form-control col-md-8" name="provider_id"
+                                        asp-for="provider_id"
+                                        asp-items="@ViewBag.provider">
+                                    <option value="">-- Choose Provider --</option>
+                                </select>
+                                <span asp-validation-for="provider_id" class="text-danger"></span>
+
+                            </div><div class="form-group">
+                                <label for="PatientDescription" class="control-label">Description</label>
+                                <input asp-for="description" class="form-control" />
+                                <span asp-validation-for="description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Create Patient">
+                            <a href="/Patients" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $(".PatientDob").datepicker({
+
+                        });
+                    });
+                </script>
+            </form>
+        </div>
+
+    </div>
+</div>

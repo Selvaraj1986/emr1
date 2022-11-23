@@ -1,0 +1,68 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Precautions/edit/@Model.id">Edit Precaution</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <h1>Edit Precaution</h1>
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Precaution</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group">
+                                    <label for="PrecautionRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="precautionsModel.id" />
+                                    <input asp-for="precautionsModel.record_date" class="form-control" />
+                                    <span asp-validation-for="@Model.precautionsModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrecautionStatus" class="control-label">Status</label>
+                                    <select id="precautionsModel.status" class="form-control col-md-8" name="precautionsModel.status"
+                                            asp-for="@Model.precautionsModel.status">
+                                        <option value="">-- Choose --</option>
+                                        <option value="Airborne">Airborne</option>
+                                        <option value="Contact">Contact</option>
+                                        <option value="Droplet">Droplet</option>
+                                        <option value="Fall Risk">Fall Risk</option>
+                                        <option value="Protective">Protective</option>
+                                        <option value="Seizure">Seizure</option>
+                                        <option value="Suicide">Suicide</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrecautionNotes" class="control-label">Notes</label>
+                                    <input asp-for="precautionsModel.notes" class="form-control" />
+                                    <span asp-validation-for="@Model.precautionsModel.notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Precaution">
+                            <a href="/Patients/view/@Model.precautionsModel.patient_id/#precautions" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
