@@ -1,0 +1,1303 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Admissions">Admissions</a>
+
+        </div>
+
+        <h1>Add Admission</h1>
+        <div class="row-fluid">
+            <form asp-action="Add">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" aria-controls="home" role="tab"
+                                   data-toggle="tab">Admission</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+
+                                <table class="table table-striped" style="width: 95%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 20%"><label class="control-label">Area</label></td>
+                                            <td style="width: 80%"><label class="control-label">Admission</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Record Date</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="hidden" asp-for="admissionsModel.id" />
+                                                    <input asp-for="admissionsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                                    <span asp-validation-for="@Model.admissionsModel.record_date" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionComplaint" class="control-label">
+                                                        Reason for
+                                                        Admission (Pt’s Own Words)
+                                                    </label>
+                                                    <textarea asp-for="admissionsModel.complaint" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.complaint" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Admission Data</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="AdmissionInformant"
+                                                           class="control-label">Informant</label>
+                                                    <select id="admissionsModel.informant" class="form-control col-md-8" name="admissionsModel.informant"
+                                                            asp-for="@Model.admissionsModel.informant">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="patient">patient</option>
+                                                        <option value="other">other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionInterpretive" class="control-label">
+                                                        Does
+                                                        patient require interpretive services? If so make appropriate
+                                                        selections.
+                                                    </label>
+                                                    <select id="admissionsModel.interpretive" class="form-control col-md-8" name="admissionsModel.interpretive"
+                                                            asp-for="@Model.admissionsModel.interpretive">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Sign language interpreter">
+                                                            Sign language
+                                                            interpreter
+                                                        </option>
+                                                        <option value="Foreign language interpreter-specify in comments">
+                                                            Foreign language interpreter-specify in comments
+                                                        </option>
+                                                        <option value="Other (Specify in comments">
+                                                            Other (Specify in
+                                                            comments
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionAdmittedVia" class="control-label">
+                                                        Admitted
+                                                        Via
+                                                    </label>
+                                                    <select id="admissionsModel.admitted_via" class="form-control col-md-8" name="admissionsModel.admitted_via"
+                                                            asp-for="@Model.admissionsModel.admitted_via">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Ambulatory">Ambulatory</option>
+                                                        <option value="Ambulance">Ambulance</option>
+                                                        <option value="Stretcher">Stretcher</option>
+                                                        <option value="Wheelchair">Wheelchair</option>
+                                                        <option value="Parents arms">Parents arms</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionAdmittedFrom" class="control-label">
+                                                        Admitted
+                                                        From
+                                                    </label>
+                                                    <select id="admissionsModel.admitted_from" class="form-control col-md-8" name="admissionsModel.admitted_from"
+                                                            asp-for="@Model.admissionsModel.admitted_from">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="ER">ER</option>
+                                                        <option value="Home">Home</option>
+                                                        <option value="Surgery">Surgery</option>
+                                                        <option value="Physician office">Physician office</option>
+                                                        <option value="Nursing home">Nursing home</option>
+                                                        <option value="Hospital transfer">Hospital transfer</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionContact"
+                                                           class="control-label">Contact Person</label>
+                                                    <input asp-for="admissionsModel.contact" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.contact" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionOrientation"
+                                                           class="control-label">Orientation</label>
+
+                                                    <select id="admissionsModel.orientation" multiple class="form-control col-md-8" name="admissionsModel.orientation"
+                                                            asp-for="@Model.admissionsModel.orientation">
+                                                        <option value="">-- Multiple Choice --</option>
+                                                        <option value="No smoking policy">No smoking policy</option>
+                                                        <option value="intercom/bed controls">
+                                                            intercom/bed controls
+                                                        </option>
+                                                        <option value="Call light/beside and bathroom">
+                                                            Call light/beside
+                                                            and bathroom
+                                                        </option>
+                                                        <option value="Phone/TV">Phone/TV</option>
+                                                        <option value="Visiting hours">Visiting hours</option>
+                                                        <option value="Patient consent for use of siderails">
+                                                            Patient
+                                                            consent for use of siderails
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionBelongings" class="control-label">
+                                                        Belongings
+                                                        accompanying patient
+                                                    </label>
+                                                    <select id="admissionsModel.belongings" class="form-control col-md-8" name="admissionsModel.belongings"
+                                                            asp-for="@Model.admissionsModel.belongings">
+                                                        <option value="">-- Multiple Choice --</option>
+                                                        <option value="Glasses">Glasses</option>
+                                                        <option value="L contact">admission_L contact</option>
+                                                        <option value="R contact">R contact</option>
+                                                        <option value="Eye prothesis">Eye prothesis</option>
+                                                        <option value="Dentures/complete upper">
+                                                            Dentures/complete upper
+                                                        </option>
+                                                        <option value="Dentures/complete lower">
+                                                            Dentures/complete lower
+                                                        </option>
+                                                        <option value="Dentures/partial upper">
+                                                            Dentures/partial upper
+                                                        </option>
+                                                        <option value="Dentures/partial lower">
+                                                            Dentures/partial lower
+                                                        </option>
+                                                        <option value="L hearing aid">L hearing aid</option>
+                                                        <option value="R hearing aid">R hearing aid</option>
+                                                        <option value="Prosthetic devices">Prosthetic devices</option>
+                                                        <option value="None">None</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionValuablesDisposition"
+                                                           class="control-label">Valuables Disposition</label>
+                                                    <select id="admissionsModel.valuables_disposition" class="form-control col-md-8" name="admissionsModel.valuables_disposition"
+                                                            asp-for="@Model.admissionsModel.valuables_disposition">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="admission_Taken home">
+                                                            admission_Taken home
+                                                        </option>
+                                                        <option value="Secured by hospital">Secured by hospital</option>
+                                                        <option value="None">None</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionValuablesComments"
+                                                           class="control-label">Valuables Comments</label>
+                                                    <textarea asp-for="admissionsModel.valuables_comments" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.valuables_comments" class="text-danger"></span>
+                                                </div>
+                                                <label class="control-label">
+                                                    Does the patient have advance directives
+                                                </label>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionLivingWill">
+                                                            <input asp-for="admissionsModel.living_will" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.living_will" class="text-danger"></span>Living Will
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionPowerOfAttorney">
+                                                            <input asp-for="admissionsModel.power_of_attorney" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.power_of_attorney" class="text-danger"></span> Power of Attorney
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionOrganDonor">
+                                                            <input asp-for="admissionsModel.organ_donor" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.organ_donor" class="text-danger"></span> Organ Donor
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionDirectivesComments"
+                                                           class="control-label">Advanced Directives Comments</label>
+                                                    <textarea asp-for="admissionsModel.directives_comments" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.directives_comments" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Past Medical/Surgical Hx</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionNoPastMed">
+                                                            <input asp-for="admissionsModel.no_past_med" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.no_past_med" class="text-danger"></span> No Past Medical
+                                                            History
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionCardiacPastMed">
+                                                            <input asp-for="admissionsModel.cardiac_past_med" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.cardiac_past_med" class="text-danger"></span> Cardiac
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionRespiratoryPastMed">
+                                                            <input asp-for="admissionsModel.respiratory_past_med" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.respiratory_past_med" class="text-danger"></span> Respiratory
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionOthersPastMed">
+                                                            <input asp-for="admissionsModel.others_past_med" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.others_past_med" class="text-danger"></span> Others
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionPastComments"
+                                                           class="control-label">Past Medical Comments</label>
+                                                    <textarea asp-for="admissionsModel.past_comments" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.past_comments" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionPastSurgHistory"
+                                                           class="control-label">Past Surgical History</label>
+                                                    <textarea asp-for="admissionsModel.past_surg_history" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.past_surg_history" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Chronic Conditions</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionLungProblems">
+                                                            <input asp-for="admissionsModel.lung_problems" type="checkbox" id="AdmissionLungproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.lung_problems" class="text-danger"></span> Lung
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_lung_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="lung_problems_description"
+                                                               class="control-label">Lung Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.lung_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.lung_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionLungproblems($('#AdmissionLungproblems').is(':checked'));
+
+                                                        $('#AdmissionLungproblems').change(function () {
+                                                            enableAdmissionLungproblems($('#AdmissionLungproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionLungproblems(enable) {
+                                                        if (enable) {
+                                                            $('#lung_problems_description').attr('required', 'required');
+                                                            $('#admission_lung_problems_div').show();
+                                                        } else {
+                                                            $('#lung_problems_description').val('');
+                                                            $('#lung_problems_description').removeAttr('required');
+                                                            $('#admission_lung_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionStomachProblems">
+                                                            <input asp-for="admissionsModel.stomach_problems" type="checkbox" id="AdmissionStomachproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.stomach_problems" class="text-danger"></span> Stomach
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_stomach_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="stomach_problems_description"
+                                                               class="control-label">Stomach Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.stomach_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.stomach_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionStomachproblems($('#AdmissionStomachproblems').is(':checked'));
+
+                                                        $('#AdmissionStomachproblems').change(function () {
+                                                            enableAdmissionStomachproblems($('#AdmissionStomachproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionStomachproblems(enable) {
+                                                        if (enable) {
+                                                            $('#stomach_problems_description').attr('required', 'required');
+                                                            $('#admission_stomach_problems_div').show();
+                                                        } else {
+                                                            $('#stomach_problems_description').val('');
+                                                            $('#stomach_problems_description').removeAttr('required');
+                                                            $('#admission_stomach_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionThyroidProblems">
+                                                            <input asp-for="admissionsModel.thyroid_problems" type="checkbox" id="AdmissionThyroidproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.thyroid_problems" class="text-danger"></span>Thyroid
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_thyroid_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="thyroid_problems_description"
+                                                               class="control-label">Thyroid Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.thyroid_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.thyroid_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionThyroidproblems($('#AdmissionThyroidproblems').is(':checked'));
+
+                                                        $('#AdmissionThyroidproblems').change(function () {
+                                                            enableAdmissionThyroidproblems($('#AdmissionThyroidproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionThyroidproblems(enable) {
+                                                        if (enable) {
+                                                            $('#thyroid_problems_description').attr('required', 'required');
+                                                            $('#admission_thyroid_problems_div').show();
+                                                        } else {
+                                                            $('#thyroid_problems_description').val('');
+                                                            $('#thyroid_problems_description').removeAttr('required');
+                                                            $('#admission_thyroid_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionNeurologicalProblems">
+                                                            <input asp-for="admissionsModel.neurological_problems" type="checkbox" id="AdmissionNeurologicalproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.neurological_problems" class="text-danger"></span>
+                                                            Neurological problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_neurological_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="neurological_problems_description"
+                                                               class="control-label">
+                                                            Neurological Problems
+                                                            Description
+                                                        </label>
+                                                        <textarea asp-for="admissionsModel.neurological_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.neurological_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionNeurologicalproblems($('#AdmissionNeurologicalproblems').is(':checked'));
+
+                                                        $('#AdmissionNeurologicalproblems').change(function () {
+                                                            enableAdmissionNeurologicalproblems($('#AdmissionNeurologicalproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionNeurologicalproblems(enable) {
+                                                        if (enable) {
+                                                            $('#neurological_problems_description').attr('required', 'required');
+                                                            $('#admission_neurological_problems_div').show();
+                                                        } else {
+                                                            $('#neurological_problems_description').val('');
+                                                            $('#neurological_problems_description').removeAttr('required');
+                                                            $('#admission_neurological_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionHeartProblems">
+                                                            <input asp-for="admissionsModel.heart_problems" type="checkbox" id="AdmissionHeartproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.heart_problems" class="text-danger"></span>Heart
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_heart_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="heart_problems_description"
+                                                               class="control-label">Heart Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.heart_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.heart_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionHeartproblems($('#AdmissionHeartproblems').is(':checked'));
+
+                                                        $('#AdmissionHeartproblems').change(function () {
+                                                            enableAdmissionHeartproblems($('#AdmissionHeartproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionHeartproblems(enable) {
+                                                        if (enable) {
+                                                            $('#heart_problems_description').attr('required', 'required');
+                                                            $('#admission_heart_problems_div').show();
+                                                        } else {
+                                                            $('#heart_problems_description').val('');
+                                                            $('#heart_problems_description').removeAttr('required');
+                                                            $('#admission_heart_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionLiverProblems">
+                                                            <input asp-for="admissionsModel.liver_problems" type="checkbox" id="AdmissionLiverproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.liver_problems" class="text-danger"></span>Liver
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_liver_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="liver_problems_description"
+                                                               class="control-label">Liver Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.liver_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.liver_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionLiverproblems($('#AdmissionLiverproblems').is(':checked'));
+
+                                                        $('#AdmissionLiverproblems').change(function () {
+                                                            enableAdmissionLiverproblems($('#AdmissionLiverproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionLiverproblems(enable) {
+                                                        if (enable) {
+                                                            $('#liver_problems_description').attr('required', 'required');
+                                                            $('#admission_liver_problems_div').show();
+                                                        } else {
+                                                            $('#liver_problems_description').val('');
+                                                            $('#liver_problems_description').removeAttr('required');
+                                                            $('#admission_liver_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionVisionProblems">
+                                                            <input asp-for="admissionsModel.vision_problems" type="checkbox" id="AdmissionVisionproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.vision_problems" class="text-danger"></span> Vision
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_vision_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="vision_problems_description"
+                                                               class="control-label">Vision Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.vision_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.vision_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionVisionproblems($('#AdmissionVisionproblems').is(':checked'));
+
+                                                        $('#AdmissionVisionproblems').change(function () {
+                                                            enableAdmissionVisionproblems($('#AdmissionVisionproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionVisionproblems(enable) {
+                                                        if (enable) {
+                                                            $('#vision_problems_description').attr('required', 'required');
+                                                            $('#admission_vision_problems_div').show();
+                                                        } else {
+                                                            $('#vision_problems_description').val('');
+                                                            $('#vision_problems_description').removeAttr('required');
+                                                            $('#admission_vision_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionKidneyProblems">
+                                                            <input asp-for="admissionsModel.kidney_problems" type="checkbox" id="AdmissionKidneyproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.kidney_problems" class="text-danger"></span> Kidney
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_kidney_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="kidney_problems_description"
+                                                               class="control-label">Kidney Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.kidney_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.kidney_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionKidneyproblems($('#AdmissionKidneyproblems').is(':checked'));
+
+                                                        $('#AdmissionKidneyproblems').change(function () {
+                                                            enableAdmissionKidneyproblems($('#AdmissionKidneyproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionKidneyproblems(enable) {
+                                                        if (enable) {
+                                                            $('#kidney_problems_description').attr('required', 'required');
+                                                            $('#admission_kidney_problems_div').show();
+                                                        } else {
+                                                            $('#kidney_problems_description').val('');
+                                                            $('#kidney_problems_description').removeAttr('required');
+                                                            $('#admission_kidney_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionArthritisProblems">
+                                                            <input asp-for="admissionsModel.arthritis_problems" type="checkbox" id="AdmissionArthritisproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.arthritis_problems" class="text-danger"></span> Arthritis
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_arthritis_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="arthritis_problems_description"
+                                                               class="control-label">Arthritis Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.arthrities_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.arthrities_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionArthritisproblems($('#AdmissionArthritisproblems').is(':checked'));
+
+                                                        $('#AdmissionArthritisproblems').change(function () {
+                                                            enableAdmissionArthritisproblems($('#AdmissionArthritisproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionArthritisproblems(enable) {
+                                                        if (enable) {
+                                                            $('#arthritis_problems_description').attr('required', 'required');
+                                                            $('#admission_arthritis_problems_div').show();
+                                                        } else {
+                                                            $('#arthritis_problems_description').val('');
+                                                            $('#arthritis_problems_description').removeAttr('required');
+                                                            $('#admission_arthritis_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionDiabetesProblems">
+                                                            <input asp-for="admissionsModel.diabetes_problems" type="checkbox" id="AdmissionDiabetesproblems" />
+                                                            <span asp-validation-for="@Model.admissionsModel.diabetes_problems" class="text-danger"></span> Diabetes
+                                                            problems
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_diabetes_problems_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="diabetes_problems_description"
+                                                               class="control-label">Diabetes Problems Description</label>
+                                                        <textarea asp-for="admissionsModel.diabetes_problems_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.diabetes_problems_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionDiabetesproblems($('#AdmissionDiabetesproblems').is(':checked'));
+
+                                                        $('#AdmissionDiabetesproblems').change(function () {
+                                                            enableAdmissionDiabetesproblems($('#AdmissionDiabetesproblems').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionDiabetesproblems(enable) {
+                                                        if (enable) {
+                                                            $('#diabetes_problems_description').attr('required', 'required');
+                                                            $('#admission_diabetes_problems_div').show();
+                                                        } else {
+                                                            $('#diabetes_problems_description').val('');
+                                                            $('#diabetes_problems_description').removeAttr('required');
+                                                            $('#admission_diabetes_problems_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionChronicInfection">
+                                                            <input asp-for="admissionsModel.chronic_infection" type="checkbox" id="AdmissionChronicinfection" />
+                                                            <span asp-validation-for="@Model.admissionsModel.chronic_infection" class="text-danger"></span> Chronic
+                                                            infection
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_chronic_infection_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="chronic_infection_description"
+                                                               class="control-label">Chronic Infection Description</label>
+                                                        <textarea asp-for="admissionsModel.chronic_infection_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.chronic_infection_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionChronicinfection($('#AdmissionChronicinfection').is(':checked'));
+
+                                                        $('#AdmissionChronicinfection').change(function () {
+                                                            enableAdmissionChronicinfection($('#AdmissionChronicinfection').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionChronicinfection(enable) {
+                                                        if (enable) {
+                                                            $('#chronic_infection_description').attr('required', 'required');
+                                                            $('#admission_chronic_infection_div').show();
+                                                        } else {
+                                                            $('#chronic_infection_description').val('');
+                                                            $('#chronic_infection_description').removeAttr('required');
+                                                            $('#admission_chronic_infection_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionCancer">
+                                                            <input asp-for="admissionsModel.cancer" type="checkbox" id="AdmissionCancer" />
+                                                            <span asp-validation-for="@Model.admissionsModel.cancer" class="text-danger"></span> Cancer
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="admission_cancer_div" style="display: none;">
+                                                    <div class="form-group">
+                                                        <label for="cancer_description"
+                                                               class="control-label">Cancer Description</label>
+                                                        <textarea asp-for="admissionsModel.cancer_description" class="form-control"></textarea>
+                                                        <span asp-validation-for="@Model.admissionsModel.cancer_description" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        enableAdmissionCancer($('#AdmissionCancer').is(':checked'));
+
+                                                        $('#AdmissionCancer').change(function () {
+                                                            enableAdmissionCancer($('#AdmissionCancer').is(':checked'));
+                                                        });
+                                                    });
+                                                    function enableAdmissionCancer(enable) {
+                                                        if (enable) {
+                                                            $('#cancer_description').attr('required', 'required');
+                                                            $('#admission_cancer_div').show();
+                                                        } else {
+                                                            $('#cancer_description').val('');
+                                                            $('#cancer_description').removeAttr('required');
+                                                            $('#admission_cancer_div').hide();
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="form-group">
+                                                    <label for="AdmissionOtherHistory"
+                                                           class="control-label">
+                                                        Other Past Medical History or
+                                                        Surgeries
+                                                    </label>
+                                                    <textarea asp-for="admissionsModel.other_history" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.other_history" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Family History</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyNsf">
+                                                            <input asp-for="admissionsModel.family_nsf" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_nsf" class="text-danger"></span> NSF (No significant
+                                                            findings)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyHeartDisease">
+                                                            <input asp-for="admissionsModel.family_heart_disease" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_heart_disease" class="text-danger"></span>Heart Disease
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyHypertension">
+                                                            <input asp-for="admissionsModel.family_hypertension" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_hypertension" class="text-danger"></span> Hypertension
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyDiabetes">
+                                                            <input asp-for="admissionsModel.family_diabetes" class="form-controltype=" checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_diabetes" class="text-danger"></span>Diabetes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyStroke">
+                                                            <input asp-for="admissionsModel.family_stroke" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_stroke" class="text-danger"></span> stroke
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilySeizures">
+                                                            <input asp-for="admissionsModel.family_seizures" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_seizures" class="text-danger"></span> Seizures
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyKidneyDisease">
+                                                            <input asp-for="admissionsModel.family_kidney_disease" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_kidney_disease" class="text-danger"></span> Kidney
+                                                            Disease
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionFamilyLiverDisease">
+                                                            <input asp-for="admissionsModel.family_liver_disease" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.family_liver_disease" class="text-danger"></span> Liver Disease
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionFamilyDesc"
+                                                           class="control-label">Family History Disease Description</label>
+                                                    <textarea asp-for="admissionsModel.family_desc" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.family_desc" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Immunization Screen</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="AdmissionTetanus" class="control-label">Tetanus</label>
+                                                    <select id="admissionsModel.tetanus" class="form-control col-md-8" name="admissionsModel.tetanus"
+                                                            asp-for="@Model.admissionsModel.tetanus">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionInfluenza"
+                                                           class="control-label">Influenza</label>
+                                                    <select id="admissionsModel.influenza" class="form-control col-md-8" name="admissionsModel.influenza"
+                                                            asp-for="@Model.admissionsModel.influenza">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionPneumonia"
+                                                           class="control-label">Pneumonia</label>
+                                                    <select id="admissionsModel.pneumonia" class="form-control col-md-8" name="admissionsModel.pneumonia"
+                                                            asp-for="@Model.admissionsModel.pneumonia">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionHepatitisb" class="control-label">
+                                                        Hepatitis
+                                                        B
+                                                    </label>
+                                                    <select id="admissionsModel.hepatitisb" class="form-control col-md-8" name="admissionsModel.hepatitisb"
+                                                            asp-for="@Model.admissionsModel.hepatitisb">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionDpt" class="control-label">DPT</label>
+                                                    <select id="admissionsModel.dpt" class="form-control col-md-8" name="admissionsModel.dpt"
+                                                            asp-for="@Model.admissionsModel.dpt">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionPolio" class="control-label">Polio</label>
+                                                    <select id="admissionsModel.polio" class="form-control col-md-8" name="admissionsModel.polio"
+                                                            asp-for="@Model.admissionsModel.polio">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionChickenpox" class="control-label">
+                                                        Chicken
+                                                        Pox
+                                                    </label>
+                                                    <select id="admissionsModel.chickenpox" class="form-control col-md-8" name="admissionsModel.chickenpox"
+                                                            asp-for="@Model.admissionsModel.chickenpox">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionGardasil" class="control-label">
+                                                        Gardasil for
+                                                        HPV vaccine
+                                                    </label>
+                                                    <select id="admissionsModel.gardasil" class="form-control col-md-8" name="admissionsModel.gardasil"
+                                                            asp-for="@Model.admissionsModel.gardasil">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="yes">yes</option>
+                                                        <option value="no">no</option>
+                                                        <option value="unknown">unknown</option>
+                                                        <option value="unable to assess">unable to assess</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionImmuComments"
+                                                           class="control-label">Additional Comments</label>
+                                                    <textarea asp-for="admissionsModel.immu_comments" class="form-control"></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.immu_comments" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Social History</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="AdmissionPatientLives" class="control-label">
+                                                        Patient
+                                                        Lives
+                                                    </label>
+                                                    <select id="admissionsModel.patient_lives" class="form-control col-md-8" name="admissionsModel.patient_lives"
+                                                            asp-for="@Model.admissionsModel.patient_lives">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Alone">Alone</option>
+                                                        <option value="With family">With family</option>
+                                                        <option value="With S/O">With S/O</option>
+                                                        <option value="At home">At home</option>
+                                                        <option value="In long term care facility">
+                                                            In long term care
+                                                            facility
+                                                        </option>
+                                                        <option value="In assisted care facility">
+                                                            In assisted care
+                                                            facility
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSocialAbuse"
+                                                           class="control-label">Abuse/Neglect/Exploitation screen</label>
+                                                    <select id="admissionsModel.social_abuse" class="form-control col-md-8" name="admissionsModel.social_abuse"
+                                                            asp-for="@Model.admissionsModel.social_abuse">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="None of the statements apply">
+                                                            None of the
+                                                            statements apply
+                                                        </option>
+                                                        <option value="I feel unsafe in my home">
+                                                            I feel unsafe in my
+                                                            home
+                                                        </option>
+                                                        <option value="I am afraid of someone">
+                                                            I am afraid of someone
+                                                        </option>
+                                                        <option value="I have been hit, slapped, kicked or physically hurt in the past year">
+                                                            I have been hit, slapped, kicked or physically hurt in the
+                                                            past year
+                                                        </option>
+                                                        <option value="I have been physically, sexually or emotionally abused">
+                                                            I have been physically, sexually or emotionally abused
+                                                        </option>
+                                                        <option value="I have been touched in a manner that makes me feel uncomfortable">
+                                                            I have been touched in a manner that makes me feel
+                                                            uncomfortable
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSocialObservations"
+                                                           class="control-label">Observations-Neglect/Abuse</label>
+                                                    <select id="admissionsModel.social_observations" class="form-control col-md-8" name="admissionsModel.social_observations"
+                                                            asp-for="@Model.admissionsModel.social_observations">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="None">None</option>
+                                                        <option value="Evidence of neglect by self">
+                                                            Evidence of neglect
+                                                            by self
+                                                        </option>
+                                                        <option value="Evidence of neglect by caretakers">
+                                                            Evidence of
+                                                            neglect by caretakers
+                                                        </option>
+                                                        <option value="Evidence of abuse by self or others">
+                                                            Evidence of
+                                                            abuse by self or others
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSocialSupportServices"
+                                                           class="control-label">Social Support Services</label>
+                                                    <select id="admissionsModel.social_support_services" class="form-control col-md-8" name="admissionsModel.social_support_services"
+                                                            asp-for="@Model.admissionsModel.social_support_services">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="None">None</option>
+                                                        <option value="HHC">HHC</option>
+                                                        <option value="Hospice">Hospice</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSocialSupportOtherServices"
+                                                           class="control-label">Other Services</label>
+                                                    <input asp-for="admissionsModel.social_support_other_services" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.social_support_other_services" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSocialComments"
+                                                           class="control-label">Abuse/Neglect Comments</label>
+                                                    <input asp-for="admissionsModel.social_comments" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.social_comments" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Drug/Alcohol/Tobacco Usage</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="AdmissionDrugUseFreq" class="control-label">
+                                                        Social Drug
+                                                        Use Frequency
+                                                    </label>
+                                                    <select id="admissionsModel.drug_use_freq" class="form-control col-md-8" name="admissionsModel.drug_use_freq"
+                                                            asp-for="@Model.admissionsModel.drug_use_freq">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Never">Never</option>
+                                                        <option value="Rarely">Rarely</option>
+                                                        <option value="Moderate (1-2 times/day)">
+                                                            Moderate (1-2
+                                                            times/day)
+                                                        </option>
+                                                        <option value="Heavey (7-14/week)">Heavey (7-14/week)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionLastDrugUse"
+                                                           class="control-label">Time of Last Drug Usage</label>
+                                                    <input asp-for="admissionsModel.last_drug_use" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.last_drug_use" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionAlcoholUseFreq" class="control-label">
+                                                        Alcohol
+                                                        Use Frequency
+                                                    </label>
+                                                    <select id="admissionsModel.alcohol_use_freq" class="form-control col-md-8" name="admissionsModel.alcohol_use_freq"
+                                                            asp-for="@Model.admissionsModel.alcohol_use_freq">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Never">Never</option>
+                                                        <option value="Rarely">Rarely</option>
+                                                        <option value="Moderate (1-2 times/day)">
+                                                            Moderate (1-2
+                                                            times/day)
+                                                        </option>
+                                                        <option value="Heavey (7-14/week)">Heavey (7-14/week)</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionLastAlcoholUse"
+                                                           class="control-label">Time of Last Alcohol Usage</label>
+
+                                                    <input asp-for="admissionsModel.last_alcohol_use" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.last_alcohol_use" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionTaboccoUseFreq" class="control-label">
+                                                        Tabocco
+                                                        Use Frequency
+                                                    </label>
+                                                    <select id="admissionsModel.tabocco_use_freq" class="form-control col-md-8" name="admissionsModel.tabocco_use_freq"
+                                                            asp-for="@Model.admissionsModel.tabocco_use_freq">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Never">Never</option>
+                                                        <option value="Quit">Quit</option>
+                                                        <option value="Light (less than 10 cigarettes / day)">
+                                                            Light
+                                                            (less than 10 cigarettes / day)
+                                                        </option>
+                                                        <option value="Moderate (more than 10 cigarettes / day but less than 1 pack per day)">
+                                                            Moderate (more than 10 cigarettes / day but less than 1 pack
+                                                            per day)
+                                                        </option>
+                                                        <option value="Heavy ( 1 pack or more/ day)">
+                                                            Heavy ( 1 pack or
+                                                            more/ day)
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionLastTaboccoUse"
+                                                           class="control-label">Time of Last Tabocco Usage</label>
+                                                    <input asp-for="admissionsModel.last_alcohol_use" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.last_alcohol_use" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="AdmissionSubstanceUse"
+                                                           class="control-label">Drug/Alcohol/Tobacco Use Comments</label>
+                                                    <input asp-for="admissionsModel.substance_use" class="form-control" />
+                                                    <span asp-validation-for="@Model.admissionsModel.substance_use" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Impairement/Disabilities</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionCanPerformAdl">
+                                                            <input asp-for="admissionsModel.can_perform_adl" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.can_perform_adl" class="text-danger"></span> Can perform
+                                                            ADL
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionCanRead">
+                                                            <input asp-for="admissionsModel.can_read" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.can_read" class="text-danger"></span> Reading
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionCanWrite">
+                                                            <input asp-for="admissionsModel.can_write" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.can_write" class="text-danger"></span>Writing
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseDenturesUpper">
+                                                            <input asp-for="admissionsModel.use_dentures_upper" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_dentures_upper" class="text-danger"></span> Use Dentures
+                                                            Upper
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseDenturesLower">
+                                                            <input asp-for="admissionsModel.use_dentures_lower" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_dentures_lower" class="text-danger"></span> Use Dentures
+                                                            Lower
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Hearing</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionImpairedHearing">
+                                                            <input asp-for="admissionsModel.impaired_hearing" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.impaired_hearing" class="text-danger"></span>Impaired
+                                                            Hearing
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionHearingAidLeft">
+                                                            <input asp-for="admissionsModel.hearing_aid_left" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.hearing_aid_left" class="text-danger"></span> Hearing Aid
+                                                            Left
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionHearingAidRight">
+                                                            <input asp-for="admissionsModel.hearing_aid_right" class="form-controltype=" checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.hearing_aid_right" class="text-danger"></span> Hearing Aid Right
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Vision</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionImpairedVision">
+                                                            <input asp-for="admissionsModel.impaired_vision" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.impaired_vision" class="text-danger"></span> Impaired
+                                                            Vision
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseGlasses">
+                                                            <input asp-for="admissionsModel.use_glasses" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_glasses" class="text-danger"></span> Use Glasses
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseContacts">
+                                                            <input asp-for="admissionsModel.use_contacts" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_contacts" class="text-danger"></span> Use
+                                                            Contacts
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Ambulation</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseWalker">
+                                                            <input asp-for="admissionsModel.use_walker" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_walker" class="text-danger"></span> Use Walker
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseCrutches">
+                                                            <input asp-for="admissionsModel.use_crutches" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_crutches" class="text-danger"></span> Use
+                                                            Crutches
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseWheelchair">
+                                                            <input asp-for="admissionsModel.use_wheelchair" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_wheelchair" class="text-danger"></span> Use
+                                                            WheelChair
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseCane">
+                                                            <input asp-for="admissionsModel.use_cane" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_cane" class="text-danger"></span> Use Cane
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="AdmissionUseProsthesis">
+                                                            <input asp-for="admissionsModel.use_prosthesis" type="checkbox" />
+                                                            <span asp-validation-for="@Model.admissionsModel.use_prosthesis" class="text-danger"></span> Use
+                                                            Prosthesis
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Comments</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <textarea asp-for="admissionsModel.comments" class="form-control" ></textarea>
+                                                    <span asp-validation-for="@Model.admissionsModel.comments" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                           
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 stay-top-right">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Create Admission">
+                            <a href="/Admission" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#AdmissionRecordDate').val(getDateTime());
+            });
+        </script>
+    </div>
+</div>

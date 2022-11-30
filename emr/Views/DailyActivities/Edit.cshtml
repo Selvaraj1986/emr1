@@ -24,7 +24,7 @@
                                 <div class="form-group required">
                                     <label for="DailyActivityRecordDate" class="control-label">Record Date</label>
                                     <input type="hidden" asp-for="dailyActivitiesModel.id" />
-                                    <input asp-for="dailyActivitiesModel.record_date" class="form-control" />
+                                    <input asp-for="dailyActivitiesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                     <span asp-validation-for="@Model.dailyActivitiesModel.record_date" class="text-danger"></span>
 
                                 </div>

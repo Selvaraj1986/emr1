@@ -1,0 +1,77 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Treatments/edit/@Model.id">Edit Treatment</a>
+        </div>
+
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Treatment</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group required">
+                                    <label for="TreatmentRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="treatmentsModel.id" />
+                                    <input asp-for="treatmentsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                    <span asp-validation-for="@Model.treatmentsModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TreatmentStatus" class="control-label">Status</label>
+                                    <select id="treatmentsModel.status" class="form-control col-md-8" name="treatmentsModel.status"
+                                            asp-for="@Model.treatmentsModel.status">
+                                        <option value="">-- Choose --</option>
+                                        <option value="S">Scheduled</option>
+                                        <option value="P">Pending</option>
+                                        <option value="C">Completed</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TreatmentType" class="control-label">Type</label>
+                                    <select id="treatmentsModel.type" class="form-control col-md-8" name="treatmentsModel.type"
+                                            asp-for="@Model.treatmentsModel.type">
+                                        <option value="">-- Choose --</option>
+                                        <option value="Miscellaneous">Miscellaneous</option>
+                                        <option value="Occupational Therapy">Occupational Therapy</option>
+                                        <option value="Physical Therapy">Physical Therapy</option>
+                                        <option value="Respiratory Therapy">Respiratory Therapy</option>
+                                        <option value="Speech Therapy">Speech Therapy</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TreatmentNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="treatmentsModel.record_date" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.treatmentsModel.notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Treatment">
+                            <a href="/Patients/view/@Model.treatmentsModel.patient_id/#treatments" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

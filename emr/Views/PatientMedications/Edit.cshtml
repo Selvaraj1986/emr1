@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <input type="hidden" asp-for="patientMedicationsModel.id" />
                                     <label for="PatientMedicationRecordDate" class="control-label">Record Date</label>
-                                    <input asp-for="patientMedicationsModel.record_date" class="form-control" />
+                                    <input asp-for="patientMedicationsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                     <span asp-validation-for="@Model.patientMedicationsModel.record_date" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
@@ -43,21 +43,22 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label for="PatientMedicationTakenToday">
-                                            <input type="checkbox" name="patientMedicationsModel.taken_today" value="@Model.patientMedicationsModel.taken_today" checked="@Model.patientMedicationsModel.taken_today" /> Taken Today
+                                        <label for="AdmissionLivingWill">
+                                            <input asp-for="patientMedicationsModel.taken_today" type="checkbox" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.taken_today" class="text-danger"></span>Taken Today
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label for="PatientMedicationBroughtWith">
-                                            <input type="checkbox" name="patientMedicationsModel.brought_with" value="@Model.patientMedicationsModel.brought_with" checked="@Model.patientMedicationsModel.brought_with" />  Brought With
+                                        <label for="AdmissionPowerOfAttorney">
+                                            <input asp-for="patientMedicationsModel.brought_with" type="checkbox" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.brought_with" class="text-danger"></span> Brought With
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </div>

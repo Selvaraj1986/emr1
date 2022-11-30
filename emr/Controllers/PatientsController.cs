@@ -1,11 +1,13 @@
 ﻿using emr.Models;
 using emr.Models.Model;
 using emr.Services;
+using emr.Support;
 using LtiLibrary.NetCore.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.Security.Principal;
 
 namespace emr.Controllers
@@ -64,7 +66,23 @@ namespace emr.Controllers
                 sex.Add(data);
             }
             ViewBag.sex = sex;
-            return View();
+            var model = new PatientsModel();
+            model.dob = Helpers.GetTodayDate();
+            model.admittingDiagnosesModel.record_date = Helpers.GetTodayDate();
+            model.allergyModel.record_date = Helpers.GetTodayDate();
+            model.codeStatusesModel.record_date= Helpers.GetTodayDate();
+            model.dailyActivitiesModel.record_date= Helpers.GetTodayDate();
+            model.dietariesModel.record_date= Helpers.GetTodayDate();
+            model.heightsModel.record_date= Helpers.GetTodayDate();
+            model.notesModel.record_date= Helpers.GetTodayDate();
+            model.patientMedicationsModel.record_date= Helpers.GetTodayDate();
+            model.precautionsModel.record_date= Helpers.GetTodayDate();
+            model.providerOrdersModel.record_date= Helpers.GetTodayDate();
+            model.roomsModel.record_date= Helpers.GetTodayDate();
+            model.treatmentsModel.record_date= Helpers.GetTodayDate();
+            model.weightsModel.record_date= Helpers.GetTodayDate();
+
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,7 +96,7 @@ namespace emr.Controllers
                 first_name = model.first_name,
                 last_name = model.last_name,
                 gender = model.gender,
-                dob = model.dob,
+                dob = Convert.ToDateTime(model.dob),
                 provider_id = model.provider_id,
                 description = model.description,
                 active = true,
@@ -92,6 +110,7 @@ namespace emr.Controllers
         }
         public IActionResult View(int id)
         {
+            HttpContext.Session.SetString("pId", id.ToString());
             // var diagnosis = new List<AdmittingDiagnosesModel>();
             PatientsModel model = _patients.GetpatientsById(id);
             model.diagnosesModelAll = _patients.GetDiagnosisAll(id);
@@ -99,7 +118,7 @@ namespace emr.Controllers
             model.precautionsModelAll = _patients.GetPrecautionsAll(id);
             model.allergyModelAll = _patients.GetAllergyAll(id);
             model.patientMedicationsModel = new PatientMedicationsModel();
-            model.patientMedicationsModel.record_date = DateTime.Now;
+            model.patientMedicationsModel.record_date = Helpers.GetTodayDate();
             model.patientMedicationsModel.brought_with = false;
             model.patientMedicationsModel.taken_today = false;
             model.patientMedicationsModelAll = _patients.GetPatientMedicationsAll(id);
@@ -107,6 +126,24 @@ namespace emr.Controllers
             model.heightsModelAll = _patients.GetHeightAll(id);
             model.weightsModelAll = _patients.GetWeightsAll(id);
             model.dailyActivitiesModelAll = _patients.GetDailyActivitiesAll(id);
+            model.treatmentsModelAll = _patients.GetTreatmentsAll(id);
+            model.consultsModelAll = _patients.GetConsultsAll(id);
+            model.dietariesModelAll = _patients.GetDietariesAll(id);
+            int courseId = Convert.ToInt32(HttpContext.Session.GetString("courseId"));
+            var providers = _providers.GetProviders(courseId);
+            List<SelectListItem> provider = new();
+            foreach (var item in providers)
+            {
+                var data = new SelectListItem()
+                {
+                    Value = item.id.ToString(),
+                    Text = item.name
+                };
+                provider.Add(data);
+            }
+            ViewBag.provider = provider;
+            model.providerOrdersModelAll = _patients.GetProviderOrdersAll(id);
+            model.notesModelAll = _patients.GetNotesAll(id);
             return View(model);
         }
         public IActionResult Edit(int id)
@@ -249,6 +286,57 @@ namespace emr.Controllers
             dailyActivitiesModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
             _patients.SaveDailyActivitiesInfo(dailyActivitiesModel);
             return Redirect("~/Patients/view/" + id + "/#daily_activities");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddTreatments(TreatmentsModel treatmentsModel, int id)
+        {
+            treatmentsModel.patient_id = id;
+            treatmentsModel.creator_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            treatmentsModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _patients.SaveTreatmentsInfo(treatmentsModel);
+            return Redirect("~/Patients/view/" + id + "/#treatments");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddConsults(ConsultsModel consultsModel, int id)
+        {
+            consultsModel.patient_id = id;
+            consultsModel.creator_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            consultsModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _patients.SaveConsultsInfo(consultsModel);
+            return Redirect("~/Patients/view/" + id + "/#consults");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddDietaries(DietariesModel dietariesModel, int id)
+        {
+            dietariesModel.patient_id = id;
+            dietariesModel.creator_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            dietariesModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _patients.SaveDietariesInfo(dietariesModel);
+            return Redirect("~/Patients/view/" + id + "/#dietaries");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddProviderOrders(ProviderOrdersModel providerOrdersModel, int id)
+        {
+            providerOrdersModel.patient_id = id;
+            providerOrdersModel.creator_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            providerOrdersModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _patients.SaveProviderOrdersInfo(providerOrdersModel);
+            return Redirect("~/Patients/view/" + id + "/#provider_orders");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddNotes(NotesModel notesModel, int id)
+        {
+            notesModel.patient_id = id;
+            notesModel.creator_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            notesModel.modifier_id = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _patients.SaveNotesInfo(notesModel);
+            return Redirect("~/Patients/view/" + id + "/#notes");
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+
+            <a href="/Dietaries/edit/@Model.id">Edit Dietary</a>
+        </div>
+
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Dietary</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="form-group required">
+                                <label for="DietaryRecordDate" class="control-label">Record Date</label>
+                                <input type="hidden" asp-for="dietariesModel.id" />
+                                <input asp-for="dietariesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                <span asp-validation-for="@Model.dietariesModel.record_date" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="DietaryType" class="control-label">Type</label>
+                                <select id="dietariesModel.type" class="form-control col-md-8" name="dietariesModel.type"
+                                        asp-for="@Model.dietariesModel.type">
+                                    <option value="">-- Choose --</option>
+                                    <option value="Cholesterol-Restricted">Cholesterol-Restricted</option>
+                                    <option value="Clear Liquid">Clear Liquid</option>
+                                    <option value="Consistent Carbohydrate (Diabetic)">Consistent Carbohydrate (Diabetic)</option>
+                                    <option value="Fat-Restricted">Fat-Restricted</option>
+                                    <option value="Full Liquid">Full Liquid</option>
+                                    <option value="GI Soft">GI Soft</option>
+                                    <option value="Heart Healthy">Heart Healthy</option>
+                                    <option value="Low Residue/Low Fiber">Low Residue/Low Fiber</option>
+                                    <option value="Mechanical Soft">Mechanical Soft</option>
+                                    <option value="NPO">NPO</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Renal Diet">Renal Diet</option>
+                                    <option value="Salt-Restricted (low sodium)">Salt-Restricted (low sodium)</option>
+                                    <option value="Vegetarian ">Vegetarian </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="DietaryNotes" class="control-label">Notes</label>
+                                <textarea asp-for="dietariesModel.notes" class="form-control"></textarea>
+                                <span asp-validation-for="@Model.dietariesModel.notes" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Dietary">
+                            <a href="/Patients/view/@Model.dietariesModel.patient_id/#dietaries" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

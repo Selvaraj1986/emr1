@@ -29,8 +29,8 @@ namespace emr.Services
                           select new RoomsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
-                              room = d.room,                              
+                              record_date = Helpers.ToDateString(d.record_date),
+                              room = d.room,
                               created = d.created,
                               modified = d.modified,
                               patient_id = d.patient_id,
@@ -71,7 +71,7 @@ namespace emr.Services
                 code = _dbContext.rooms.Where(id => id.id == model.id).FirstOrDefault();
                 if (code != null)
                 {
-                    code.record_date = model.record_date;
+                    code.record_date = Helpers.ToDateFormat(model.record_date);
                     code.room = model.room;
                     code.notes = model.notes;
                     code.modifier_id = model.modifier_id;

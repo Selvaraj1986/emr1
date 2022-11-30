@@ -21,7 +21,6 @@ namespace emr.Services
         /// <returns></returns>
         public DailyActivitiesModel GetDailyActivitiesById(int id)
         {
-            var ddd = Helpers.GetEnumValue<Helpers.Activities>(1).ToString();
             var result = new DailyActivitiesModel();
             try
             {
@@ -30,7 +29,7 @@ namespace emr.Services
                           select new DailyActivitiesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               created = d.created,
                               modified = d.modified,
                               patient_id = d.patient_id,
@@ -80,7 +79,7 @@ namespace emr.Services
                 activity = _dbContext.daily_activities.Where(id => id.id == model.id).FirstOrDefault();
                 if (activity != null)
                 {
-                    activity.record_date = model.record_date;
+                    activity.record_date = Helpers.ToDateFormat(model.record_date);
                     activity.modified = DateTime.Now;
                     activity.bathing = model.bathing;
                     activity.dressing = model.dressing;

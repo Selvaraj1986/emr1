@@ -29,7 +29,7 @@ namespace emr.Services
                           select new HeightsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               height = d.height,
                               created = d.created,
                               modified = d.modified,
@@ -71,7 +71,7 @@ namespace emr.Services
                 medication = _dbContext.heights.Where(id => id.id == model.id).FirstOrDefault();
                 if (medication != null)
                 {
-                    medication.record_date = model.record_date;
+                    medication.record_date = Helpers.ToDateFormat(model.record_date);
                     medication.height = model.height;
                     medication.height_unit = model.height_unit;
                     medication.modified = DateTime.Now;

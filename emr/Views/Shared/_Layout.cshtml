@@ -10,10 +10,11 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/sb-admin-2.css">
     <link rel="stylesheet" type="text/css" href="~/css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="~/css/timepicker-addon.css">
     <link rel="stylesheet" type="text/css" href="~/css/custom.css">
     <link rel="stylesheet" type="text/css" href="~/css/site.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="~/js/jquery-2.1.0.min.js"></script>
 
 
@@ -79,5 +80,13 @@
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
     }
+        <script type="text/javascript">
+            $(function () {
+                $("#datepicker").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+        </script>
     </body>
     </html>

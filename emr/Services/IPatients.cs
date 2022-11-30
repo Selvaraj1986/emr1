@@ -165,5 +165,65 @@ namespace emr.Services
         /// <returns></returns>
         List<DailyActivitiesModel> GetDailyActivitiesAll(int id);
 
+        /// <summary>
+        /// get Treatments info 
+        /// </summary>  
+        /// <returns></returns>
+        int SaveTreatmentsInfo(TreatmentsModel model);
+
+        /// <summary>
+        /// get Treatments info 
+        /// </summary>
+        /// <returns></returns>
+        List<TreatmentsModel> GetTreatmentsAll(int id);
+
+        /// <summary>
+        /// get Consults info 
+        /// </summary>  
+        /// <returns></returns>
+        int SaveConsultsInfo(ConsultsModel model);
+
+        /// <summary>
+        /// get Consults info 
+        /// </summary>
+        /// <returns></returns>
+        List<ConsultsModel> GetConsultsAll(int id);
+
+        /// <summary>
+        /// get Dietaries info 
+        /// </summary>  
+        /// <returns></returns>
+        int SaveDietariesInfo(DietariesModel model);
+
+        /// <summary>
+        /// get Dietaries info 
+        /// </summary>
+        /// <returns></returns>
+        List<DietariesModel> GetDietariesAll(int id);
+
+        /// <summary>
+        /// get ProviderOrders info 
+        /// </summary>  
+        /// <returns></returns>
+        int SaveProviderOrdersInfo(ProviderOrdersModel model);
+
+        /// <summary>
+        /// get ProviderOrders info 
+        /// </summary>
+        /// <returns></returns>
+        List<ProviderOrdersModel> GetProviderOrdersAll(int id);
+
+        /// <summary>
+        /// get Notes info 
+        /// </summary>  
+        /// <returns></returns>
+        int SaveNotesInfo(NotesModel model);
+
+        /// <summary>
+        /// get Notes info 
+        /// </summary>
+        /// <returns></returns>
+        List<NotesModel> GetNotesAll(int id);
+
     }
 }

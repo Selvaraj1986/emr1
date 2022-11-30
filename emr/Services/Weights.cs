@@ -29,7 +29,7 @@ namespace emr.Services
                           select new WeightsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               weight = d.weight,
                               created = d.created,
                               modified = d.modified,
@@ -71,11 +71,11 @@ namespace emr.Services
                 weight = _dbContext.weights.Where(id => id.id == model.id).FirstOrDefault();
                 if (weight != null)
                 {
-                    weight.record_date = model.record_date;
+                    weight.record_date = Helpers.ToDateFormat(model.record_date);
                     weight.weight = model.weight;
                     weight.weight_unit = model.weight_unit;
                     weight.modified = DateTime.Now;
-                    
+
                 }
                 _dbContext.Update(weight);
                 _dbContext.SaveChanges();

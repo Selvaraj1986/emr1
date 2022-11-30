@@ -31,7 +31,7 @@ namespace emr.Services
                           select new CodeStatusesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               code_status = d.code_status,
                               created = d.created,
                               modified = d.modified,
@@ -73,7 +73,7 @@ namespace emr.Services
                 code = _dbContext.code_statuses.Where(id => id.id == model.id).FirstOrDefault();
                 if (code != null)
                 {
-                    code.record_date = model.record_date;
+                    code.record_date = Helpers.ToDateFormat(model.record_date);
                     code.code_status = model.code_status;
                     code.notes = model.notes;
                     code.modifier_id = model.modifier_id;

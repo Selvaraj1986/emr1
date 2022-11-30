@@ -101,10 +101,6 @@ namespace emr.Services
                           select new ProvidersModel
                           {
                               id = p.id,
-                              created = p.created,
-                              creator_id = p.creator_id,
-                              modified = p.modified,
-                              modifier_id = p.modifier_id,
                               name = p.name.ToCleanString(),
                               notes = p.notes.ToCleanString(),
 
@@ -132,9 +128,9 @@ namespace emr.Services
                           select new ProvidersModel
                           {
                               id = p.id,
-                              created = p.created,
+                              created = Helpers.ToDateTimeFormat(p.created),
                               creator_id = p.creator_id,
-                              modified = p.modified,
+                              modified = Helpers.ToDateTimeFormat(p.modified),
                               modifier_id = p.modifier_id,
                               name = p.name.ToCleanString(),
                               notes = p.notes.ToCleanString(),

@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using LtiLibrary.NetCore.Lis.v2;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace emr.Services
 {
@@ -62,7 +63,7 @@ namespace emr.Services
                     patients.first_name = model.first_name;
                     patients.last_name = model.last_name;
                     patients.gender = model.gender;
-                    patients.dob = model.dob;
+                    patients.dob = Convert.ToDateTime(model.dob);
                     patients.provider_id = model.provider_id;
                     patients.description = model.description;
                     patients.modified = DateTime.Now;
@@ -103,7 +104,7 @@ namespace emr.Services
                               first_name = p.first_name,
                               last_name = p.last_name,
                               gender = p.gender,
-                              dob = p.dob,
+                              dob = p.dob.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                               provider_id = p.provider_id,
                               provider = pr.name,
                               locks = p.locks,
@@ -169,7 +170,7 @@ namespace emr.Services
                         first_name = item.first_name,
                         last_name = item.last_name,
                         gender = item.gender,
-                        dob = item.dob,
+                        dob = Convert.ToDateTime(item.dob),
                         provider_id = providerId,
                         course_id = courseId,
                         active = true
@@ -242,7 +243,7 @@ namespace emr.Services
                     first_name = fname.name,
                     last_name = lname.name,
                     gender = gender,
-                    dob = dob,
+                    dob = Convert.ToDateTime(dob),
                     provider_id = pId,
                     course_id = courseId,
                     active = true
@@ -304,7 +305,7 @@ namespace emr.Services
                               first_name = p.first_name,
                               last_name = p.last_name,
                               gender = p.gender,
-                              dob = p.dob,
+                              dob = p.dob.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                               provider_id = p.provider_id,
                               provider = pr.name,
                               locks = p.locks,
@@ -322,6 +323,7 @@ namespace emr.Services
                     result.modifier = peopleModified.username;
 
                 }
+              
             }
             catch (Exception ex)
             {
@@ -373,7 +375,7 @@ namespace emr.Services
                 diagnosis.created = DateTime.Now;
                 diagnosis.modifier_id = model.modifier_id;
                 diagnosis.modified = DateTime.Now;
-                diagnosis.record_date = model.record_date;
+                diagnosis.record_date = Helpers.ToDateFormat(model.record_date);
                 diagnosis.diagnosis = model.diagnosis;
                 diagnosis.active = true;
                 _dbContext.Add(diagnosis);
@@ -403,11 +405,11 @@ namespace emr.Services
                           select new AdmittingDiagnosesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = d.record_date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                               diagnosis = d.diagnosis,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
 
                           }
                 ).ToList();
@@ -436,7 +438,7 @@ namespace emr.Services
                 code.created = DateTime.Now;
                 code.modifier_id = model.modifier_id;
                 code.modified = DateTime.Now;
-                code.record_date = model.record_date;
+                code.record_date = Helpers.ToDateFormat(model.record_date);
                 code.code_status = model.code_status;
                 code.notes = model.notes;
                 code.active = true;
@@ -467,12 +469,12 @@ namespace emr.Services
                           select new CodeStatusesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               code_status = d.code_status,
                               notes = d.notes,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -501,7 +503,7 @@ namespace emr.Services
                 code.created = DateTime.Now;
                 code.modifier_id = model.modifier_id;
                 code.modified = DateTime.Now;
-                code.record_date = model.record_date;
+                code.record_date = Helpers.ToDateFormat(model.record_date);
                 code.status = model.status;
                 code.notes = model.notes;
                 code.active = true;
@@ -532,12 +534,12 @@ namespace emr.Services
                           select new PrecautionsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               status = d.status,
                               notes = d.notes,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -566,7 +568,7 @@ namespace emr.Services
                 code.created = DateTime.Now;
                 code.modifier_id = model.modifier_id;
                 code.modified = DateTime.Now;
-                code.record_date = model.record_date;
+                code.record_date = Helpers.ToDateFormat(model.record_date);
                 code.allergy_type = model.allergy_type;
                 code.allergy = model.allergy;
                 code.active = true;
@@ -597,12 +599,12 @@ namespace emr.Services
                           select new AllergyModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               allergy_type = d.allergy_type,
                               allergy = d.allergy,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -631,7 +633,7 @@ namespace emr.Services
                 medications.created = DateTime.Now;
                 medications.modifier_id = model.modifier_id;
                 medications.modified = DateTime.Now;
-                medications.record_date = model.record_date;
+                medications.record_date = Helpers.ToDateFormat(model.record_date);
                 medications.medication = model.medication;
                 medications.dose = model.dose;
                 medications.frequency = model.frequency;
@@ -665,15 +667,15 @@ namespace emr.Services
                           select new PatientMedicationsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               medication = d.medication,
                               dose = d.dose,
                               frequency = d.frequency,
-                              taken_today = (d.taken_today == null ? false : d.taken_today),
-                              brought_with = (d.brought_with == null ? false : d.brought_with),
+                              takentoday = Helpers.GetEnumValue<Helpers.Status>(Convert.ToInt16(d.taken_today)).ToString(),
+                              broughtwith = Helpers.GetEnumValue<Helpers.Status>(Convert.ToInt16(d.brought_with)).ToString(),
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -702,7 +704,7 @@ namespace emr.Services
                 medications.created = DateTime.Now;
                 medications.modifier_id = model.modifier_id;
                 medications.modified = DateTime.Now;
-                medications.record_date = model.record_date;
+                medications.record_date = Helpers.ToDateFormat(model.record_date);
                 medications.room = model.room;
                 medications.notes = model.notes;
                 medications.active = true;
@@ -733,12 +735,12 @@ namespace emr.Services
                           select new RoomsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               room = d.room,
                               notes = d.notes,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -767,7 +769,7 @@ namespace emr.Services
                 medications.created = DateTime.Now;
                 medications.modifier_id = model.modifier_id;
                 medications.modified = DateTime.Now;
-                medications.record_date = model.record_date;
+                medications.record_date = Helpers.ToDateFormat(model.record_date);
                 medications.height = model.height;
                 medications.height_unit = model.height_unit;
                 medications.active = true;
@@ -798,12 +800,11 @@ namespace emr.Services
                           select new HeightsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
-                              height = d.height,
-                              height_unit = d.height_unit,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              height_unit = d.height + ' ' + d.height_unit,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -832,7 +833,7 @@ namespace emr.Services
                 weights.created = DateTime.Now;
                 weights.modifier_id = model.modifier_id;
                 weights.modified = DateTime.Now;
-                weights.record_date = model.record_date;
+                weights.record_date = Helpers.ToDateFormat(model.record_date);
                 weights.weight = model.weight;
                 weights.weight_unit = model.weight_unit;
                 weights.active = true;
@@ -863,12 +864,11 @@ namespace emr.Services
                           select new WeightsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
-                              weight = d.weight,
-                              weight_unit = d.weight_unit,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              weight_unit = d.weight + ' ' + d.weight_unit,
                               created = d.created,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }
@@ -892,13 +892,13 @@ namespace emr.Services
             try
             {
                 var activity = new daily_activities();
-                activity.record_date = model.record_date;
+                activity.record_date = Helpers.ToDateFormat(model.record_date);
                 activity.patient_id = model.patient_id;
                 activity.creator_id = model.creator_id;
                 activity.created = DateTime.Now;
                 activity.modifier_id = model.modifier_id;
                 activity.modified = DateTime.Now;
-              
+
                 activity.bathing = model.bathing;
                 activity.dressing = model.dressing;
                 activity.grooming = model.grooming;
@@ -936,21 +936,346 @@ namespace emr.Services
                           select new DailyActivitiesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               created = d.created,
                               modified = d.modified,
                               patient_id = d.patient_id,
-                              bathing = d.bathing,
-                              dressing = d.dressing,
-                              grooming = d.grooming,
-                              oral_care = d.oral_care,
-                              toileting = d.toileting,
-                              transferring = d.transferring,
-                              walking = d.walking,
-                              eating = d.eating,
+                              bathingName = Helpers.GetEnumValue<Helpers.Activities>(d.bathing).ToString(),
+                              dressingName = Helpers.GetEnumValue<Helpers.Activities>(d.dressing).ToString(),
+                              groomingName = Helpers.GetEnumValue<Helpers.Activities>(d.grooming).ToString(),
+                              oral_careName = Helpers.GetEnumValue<Helpers.Activities>(d.oral_care).ToString(),
+                              toiletingName = Helpers.GetEnumValue<Helpers.Activities>(d.toileting).ToString(),
+                              transferringName = Helpers.GetEnumValue<Helpers.Activities>(d.transferring).ToString(),
+                              walkingName = Helpers.GetEnumValue<Helpers.Activities>(d.walking).ToString(),
+                              eatingName = Helpers.GetEnumValue<Helpers.Activities>(d.eating).ToString(),
                               notes = d.notes,
-                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.created,
-                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + d.modified
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
+                          }
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// store the Treatments info 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveTreatmentsInfo(TreatmentsModel model)
+        {
+            int returnID = 0;
+            try
+            {
+                var treatments = new treatments();
+                treatments.patient_id = model.patient_id;
+                treatments.creator_id = model.creator_id;
+                treatments.created = DateTime.Now;
+                treatments.modifier_id = model.modifier_id;
+                treatments.modified = DateTime.Now;
+                treatments.record_date = Helpers.ToDateFormat(model.record_date);
+                treatments.status = model.status;
+                treatments.type = model.type;
+                treatments.notes = model.notes;
+                treatments.active = true;
+                _dbContext.Add(treatments);
+                _dbContext.SaveChanges();
+                returnID = treatments.id;
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return returnID;
+        }
+        /// <summary>
+        /// get Treatments info 
+        /// </summary>
+        /// <returns></returns>
+        public List<TreatmentsModel> GetTreatmentsAll(int id)
+        {
+            var result = new List<TreatmentsModel>();
+            try
+            {
+                result = (from d in _dbContext.treatments
+                          where d.active == true && d.patient_id == id
+                          select new TreatmentsModel
+                          {
+                              id = d.id,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              status = d.status,
+                              type = d.type,
+                              notes = d.notes,
+                              created = d.created,
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
+                          }
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// store the Consults info 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveConsultsInfo(ConsultsModel model)
+        {
+            int returnID = 0;
+            try
+            {
+                var consults = new consults();
+                consults.patient_id = model.patient_id;
+                consults.creator_id = model.creator_id;
+                consults.created = DateTime.Now;
+                consults.modifier_id = model.modifier_id;
+                consults.modified = DateTime.Now;
+                consults.record_date = model.record_date;
+                consults.notes = model.notes;
+                consults.active = true;
+                _dbContext.Add(consults);
+                _dbContext.SaveChanges();
+                returnID = consults.id;
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return returnID;
+        }
+        /// <summary>
+        /// get Consults info 
+        /// </summary>
+        /// <returns></returns>
+        public List<ConsultsModel> GetConsultsAll(int id)
+        {
+            var result = new List<ConsultsModel>();
+            try
+            {
+                result = (from d in _dbContext.consults
+                          where d.active == true && d.patient_id == id
+                          select new ConsultsModel
+                          {
+                              id = d.id,
+                              record_date = d.record_date,
+                              notes = d.notes,
+                              created = d.created,
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
+                          }
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// store the Dietaries info 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveDietariesInfo(DietariesModel model)
+        {
+            int returnID = 0;
+            try
+            {
+                var dietaries = new dietaries();
+                dietaries.patient_id = model.patient_id;
+                dietaries.creator_id = model.creator_id;
+                dietaries.created = DateTime.Now;
+                dietaries.modifier_id = model.modifier_id;
+                dietaries.modified = DateTime.Now;
+                dietaries.record_date = Helpers.ToDateFormat(model.record_date);
+                dietaries.notes = model.notes;
+                dietaries.type = model.type;
+                dietaries.active = true;
+                _dbContext.Add(dietaries);
+                _dbContext.SaveChanges();
+                returnID = dietaries.id;
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return returnID;
+        }
+        /// <summary>
+        /// get Dietaries info 
+        /// </summary>
+        /// <returns></returns>
+        public List<DietariesModel> GetDietariesAll(int id)
+        {
+            var result = new List<DietariesModel>();
+            try
+            {
+                result = (from d in _dbContext.dietaries
+                          where d.active == true && d.patient_id == id
+                          select new DietariesModel
+                          {
+                              id = d.id,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              notes = d.notes,
+                              type = d.type,
+                              created = d.created,
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
+                          }
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// store the ProviderOrders info 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveProviderOrdersInfo(ProviderOrdersModel model)
+        {
+            int returnID = 0;
+            try
+            {
+                var orders = new provider_orders();
+                orders.patient_id = model.patient_id;
+                orders.creator_id = model.creator_id;
+                orders.created = DateTime.Now;
+                orders.modifier_id = model.modifier_id;
+                orders.modified = DateTime.Now;
+                orders.record_date = Helpers.ToDateFormat(model.record_date);
+                orders.notes = model.notes;
+                orders.provider_id = model.provider_id;
+                orders.active = true;
+                _dbContext.Add(orders);
+                _dbContext.SaveChanges();
+                returnID = orders.id;
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return returnID;
+        }
+        /// <summary>
+        /// get ProviderOrders info 
+        /// </summary>
+        /// <returns></returns>
+        public List<ProviderOrdersModel> GetProviderOrdersAll(int id)
+        {
+            var result = new List<ProviderOrdersModel>();
+            try
+            {
+                result = (from d in _dbContext.provider_orders
+                          where d.active == true && d.patient_id == id
+                          select new ProviderOrdersModel
+                          {
+                              id = d.id,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              notes = d.notes,
+                              provider_name = (from p in _dbContext.providers where p.id == d.provider_id select p).FirstOrDefault().name ?? "",
+                              created = d.created,
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
+                          }
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// store the Notes info 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveNotesInfo(NotesModel model)
+        {
+            int returnID = 0;
+            try
+            {
+                var notes = new notes();
+                notes.patient_id = model.patient_id;
+                notes.creator_id = model.creator_id;
+                notes.created = DateTime.Now;
+                notes.modifier_id = model.modifier_id;
+                notes.modified = DateTime.Now;
+                notes.record_date = Helpers.ToDateFormat(model.record_date);
+                notes.note = model.note;
+                notes.active = true;
+                _dbContext.Add(notes);
+                _dbContext.SaveChanges();
+                returnID = notes.id;
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = new Loggers(_iconfiguration);
+                loggers.WriteLog(ex.Message.ToString());
+
+            }
+            return returnID;
+        }
+        /// <summary>
+        /// get Notes info 
+        /// </summary>
+        /// <returns></returns>
+        public List<NotesModel> GetNotesAll(int id)
+        {
+            var result = new List<NotesModel>();
+            try
+            {
+                result = (from d in _dbContext.notes
+                          where d.active == true && d.patient_id == id
+                          select new NotesModel
+                          {
+                              id = d.id,
+                              record_date = Helpers.ToDateString(d.record_date),
+                              note = d.note,
+                              created = d.created,
+                              creator = (from p in _dbContext.people where p.id == d.creator_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.created),
+                              modifier = (from p in _dbContext.people where p.id == d.modifier_id select p).FirstOrDefault().username + ' ' + '@' + ' ' + Helpers.ToDateTimeFormat(d.modified)
                           }
                 ).ToList();
             }

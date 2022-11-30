@@ -29,11 +29,21 @@ builder.Services.AddScoped<IHeight, Height>();
 builder.Services.AddScoped<IRooms, Rooms>();
 builder.Services.AddScoped<IWeights, Weights>();
 builder.Services.AddScoped<IDailyActivities, DailyActivities>();
+builder.Services.AddScoped<ITreatments, Treatments>();
+builder.Services.AddScoped<IConsults, Consults>();
+builder.Services.AddScoped<IDietaries, Dietaries>();
+builder.Services.AddScoped<IProviderOrders, ProviderOrders>();
+builder.Services.AddScoped<INotes, Notes>();
+builder.Services.AddScoped<IAdmission, Admission>();
+builder.Services.AddScoped<IObAdmission, ObAdmission>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<EmrDbContext>
 (options => options.UseSqlServer(ConnectionStringsTracker));
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<EmrDbContext>(opt =>
+{
+    opt.EnableSensitiveDataLogging();
+});
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);

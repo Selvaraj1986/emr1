@@ -2,6 +2,7 @@
 using emr.Models;
 using emr.Support;
 using emr.Models.Model;
+using System.Globalization;
 
 namespace emr.Services
 {
@@ -29,7 +30,7 @@ namespace emr.Services
                           select new AdmittingDiagnosesModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = d.record_date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                               diagnosis = d.diagnosis,
                               created = d.created,
                               modified = d.modified,
@@ -70,7 +71,7 @@ namespace emr.Services
                 diagnoses = _dbContext.admitting_diagnoses.Where(id => id.id == model.id).FirstOrDefault();
                 if (diagnoses != null)
                 {
-                    diagnoses.record_date = model.record_date;
+                    diagnoses.record_date = Convert.ToDateTime(model.record_date);
                     diagnoses.diagnosis = model.diagnosis;
                     diagnoses.modifier_id = model.modifier_id;
                     diagnoses.modified = DateTime.Now;

@@ -1,0 +1,900 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Obstetrics">Obstetrics</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="admissionTab">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Basic Info</a></li>
+                <li role="presentation"><a href="#dilatation" aria-controls="address" role="tab" data-toggle="tab">Dilatation</a></li>
+                <li role="presentation"><a href="#maternal" aria-controls="address" role="tab" data-toggle="tab">Maternal</a></li>
+                <li role="presentation"><a href="#uterine" aria-controls="address" role="tab" data-toggle="tab">Uterine Activity</a></li>
+                <li role="presentation"><a href="#fetal" aria-controls="address" role="tab" data-toggle="tab">Fetal Assessment</a></li>
+                <li role="presentation"><a href="#intervention" aria-controls="address" role="tab" data-toggle="tab">Intervention</a></li>
+
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="command-box">
+                        <a href="/Obstetrics/edit/@Model.obAdmissionsModel.id" class="btn btn-success btn-sm">Edit Details</a>
+                    </div>
+                    <table class="table table-striped" style="width: 95%">
+                        <tbody>
+                            <tr>
+                                <td style="width: 20%"><label class="control-label">Area</label></td>
+                                <td style="width: 80%"><label class="control-label">Admission</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Record Date</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="form-value">
+                                            @Model.obAdmissionsModel.record_date
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Reason for Admission</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Labor / SROM： </label>@Model.obAdmissionsModel.labor_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Induction： </label>@Model.obAdmissionsModel.induction_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.induction_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Primary C/S： </label>@Model.obAdmissionsModel.primarycs_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.primarycs_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Observation： </label>@Model.obAdmissionsModel.observation_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.observation_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">OB / Medical complication： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.ob_complication</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Current Pregnancy Labs</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">NPC： </label>@Model.obAdmissionsModel.npc_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">POL： </label>@Model.obAdmissionsModel.pol_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">PPROM： </label>@Model.obAdmissionsModel.pprom_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Cerclage： </label>@Model.obAdmissionsModel.cerclage_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">PIH： </label>@Model.obAdmissionsModel.pih_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Chr. HTN： </label>@Model.obAdmissionsModel.chrhtn_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other： </label>@Model.obAdmissionsModel.other_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.other_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Diabetes： </label>@Model.obAdmissionsModel.diabetes_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.diabetes_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Diet： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.diet</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Insulin： </label>@Model.obAdmissionsModel.insulin_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.insulin_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Amniocentesis： </label>@Model.obAdmissionsModel.amniocentesis_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.amniocentesis_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Bld type /RH： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.blood_type</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Date Rhogam： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.rhogam</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Antibody screen： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.antibody_screen</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Rubella： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.rubella</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Recent exposure to chick pox： </label>@Model.obAdmissionsModel.chickpox
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Current meds： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.current_meds</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hepatitis B： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.hepatitis_b</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">HIV： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.hiv</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Group B Strep： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.group_b_strep</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">GC： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.gc</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Chlamydia： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.chlamydia</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Rpr： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.rpr</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Previous OB History</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">POL： </label>@Model.obAdmissionsModel.pol_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Multiple gestation： </label>@Model.obAdmissionsModel.multi_gestation_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Prev C/S type： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.prev_cs_type</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Reason： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.prev_cs_reason</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">PIH： </label>@Model.obAdmissionsModel.pih_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Chronic HTN： </label> @Model.obAdmissionsModel.chrhtn_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Diabetes： </label>@Model.obAdmissionsModel.diabetes_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.diabetes_notes</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Stillbirth/demise： </label>@Model.obAdmissionsModel.previous_stillbirth_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Neodeath： </label>@Model.obAdmissionsModel.previous_neodeath_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Anomalies： </label>@Model.obAdmissionsModel.previous_anomalies_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Precipitous labor (&lt; 3H)： </label>@Model.obAdmissionsModel.previous_precipitous_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Macrosomia： </label>@Model.obAdmissionsModel.previous_macrosomia_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">PP Hemorrhage： </label>@Model.obAdmissionsModel.previous_pp_hemorrhage_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hx Transfusion reaction： </label>@Model.obAdmissionsModel.previous_hx_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.other</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Fetal Assessment</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">WNL： </label>@Model.obAdmissionsModel.wnl_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Variance： </label><br>
+                                        <label class="control-label">NRFS</label>
+                                        @Model.obAdmissionsModel.nrfs_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">FHR： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.fhr</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">LTV： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.ltv</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">STV： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.stv</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Decelerations： </label><br>
+                                        <label class="control-label">Decreased fetal movement： </label>@Model.obAdmissionsModel.decreased_fetal_movement_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">IUGR： </label>@Model.obAdmissionsModel.iugr_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Notes： </label>
+                                        <div class="form-value">test</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Drug/Alcohol/Tobacco Usage</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Tobacco Use： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.tobacco_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Amt： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.tobacco_use_amount</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Alcohol Use： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.alcohol_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Amt： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.alcohol_use_amount</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Drug Use： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.drug_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Amt： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.drug_use_amount</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Primary Language： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.primary_language</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other Language： </label>
+                                        <div class="form-value">@Model.obAdmissionsModel.other_language</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Pain Assessment</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">1. Do you have any ongoing pain problem? </label> @Model.obAdmissionsModel.ongoing_pain_status
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">2. Do you have any pain now? </label> @Model.obAdmissionsModel.current_pain_status
+                                    </div>
+
+                                    <label class="control-label">
+                                        3. If any of the above question are answered yes, the patient has a positive pain screening.<br>
+                                        4. Paitent to be given pain management educaiton material Complete pain / sympton assesment on flowsheet.<br>
+                                        5. Plese proceed to complete pain assessment.
+                                    </label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dilatation">
+                    <div class="modal fade" id="6384887c-2770-4add-a125-1ba5c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Dilatation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    </p><form action="/emr/general/dilatation_progresses/add" role="form" id="DilatationProgressAddForm" method="post" accept-charset="utf-8">
+                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[DilatationProgress][patient_id]" value="4210" id="DilatationProgressPatientId"><input type="hidden" name="data[DilatationProgress][ob_admission_id]" value="178" id="DilatationProgressObAdmissionId"><div class="form-group"><label for="DilatationProgressRecordDate" class="control-label">Record Date</label> <input name="data[DilatationProgress][record_date]" class="form-control datetimepicker hasDatepicker" type="text" id="DilatationProgressRecordDate"></div><div class="form-group">
+                                            <label for="DilatationProgressStation" class="control-label">Station</label> <select name="data[DilatationProgress][station]" class="form-control" id="DilatationProgressStation">
+                                                <option value="">-- Choose --</option>
+                                                <option value="-4">-4</option>
+                                                <option value="-3">-3</option>
+                                                <option value="-2">-2</option>
+                                                <option value="-1">-1</option>
+                                                <option value="0">0</option>
+                                                <option value="+1">+1</option>
+                                                <option value="+2">+2</option>
+                                                <option value="+3">+3</option>
+                                            </select>
+                                        </div><div class="form-group">
+                                            <label for="DilatationProgressDilatation" class="control-label">Dilatation</label> <select name="data[DilatationProgress][dilatation]" class="form-control" id="DilatationProgressDilatation">
+                                                <option value="">-- Choose --</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div><div class="form-group">
+                                            <label for="DilatationProgressEffacement" class="control-label">Effacement</label> <select name="data[DilatationProgress][effacement]" class="form-control" id="DilatationProgressEffacement">
+                                                <option value="">-- Choose --</option>
+                                                <option value="0">0%</option>
+                                                <option value="25">25%</option>
+                                                <option value="50">50%</option>
+                                                <option value="75">75%</option>
+                                                <option value="80">80%</option>
+                                                <option value="90">90%</option>
+                                                <option value="100">100%</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="DilatationProgressPosition" class="control-label">Position</label> <input name="data[DilatationProgress][position]" class="form-control" maxlength="255" type="text" id="DilatationProgressPosition"></div><script type="text/javascript">
+                                                                                                                                                                                                                                                                                                 $(function () {
+                                                                                                                                                                                                                                                                                                     $('#DilatationProgressRecordDate').val(getDateTime());
+                                                                                                                                                                                                                                                                                                 });
+                                        </script>
+                                        <p></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Add Dilatation">
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="dilatation_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                        <a id="dilatation_info" href="/emr/files/ObAdmission/dilatation.png" target="_blank"><i class="fa fa-question text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Station</td>
+                                    <td>Dilatation</td>
+                                    <td>Effacement (%)</td>
+                                    <td>Position</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="dilatation_chart_div"></div>
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                        google.charts.load('current', { packages: ['corechart'] });
+                        //google.charts.setOnLoadCallback(drawChart);
+                    </script>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#dilatation_plus').click(function () {
+                                $('#6384887c-2770-4add-a125-1ba5c0a806c9').modal('show');
+                                return false;
+                            });
+                            $('#dilatation_chart').click(function () {
+                                drawDilatationChart();
+                                return false;
+                            });
+                        });
+
+
+                        function drawDilatationChart() {
+                            var data = new google.visualization.DataTable();
+                            data.addColumn('string', 'Date');
+                            data.addColumn('number', 'Station');
+                            data.addColumn('number', 'Dilatation');
+
+                            data.addRows([
+                            ]);
+
+                            var options = {
+                                title: 'Labor Progress Chart',
+                                vAxes: {
+                                    0: {
+                                        title: 'Station',
+                                        viewWindowMode: 'explicit',
+                                        direction: -1,
+                                        viewWindow: {
+                                            max: 4,
+                                            min: -5
+                                        },
+                                        gridlines: { count: 10 }
+                                    },
+                                    1: {
+                                        title: 'Dilatation',
+                                        gridlines: { color: 'transparent' },
+                                        viewWindow: {
+                                            max: 10,
+                                            min: 1
+                                        },
+                                        gridlines: { count: 10 },
+                                        ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                    },
+                                },
+                                series: {
+                                    0: {
+                                        pointSize: 5,
+                                        curveType: 'function',
+                                        targetAxisIndex: 0,
+                                        color: 'green'
+                                    },
+                                    1: {
+                                        pointSize: 5,
+                                        curveType: 'function',
+                                        targetAxisIndex: 1,
+                                        color: 'purple'
+                                    },
+                                },
+
+                                width: 800,
+                                height: 400,
+                                axes: {
+                                    x: {
+                                        0: { side: 'top' }
+                                    }
+                                }
+                            };
+
+                            var chart = new google.visualization.LineChart(document.getElementById('dilatation_chart_div'));
+
+                            chart.draw(data, options);
+                        }
+
+
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="maternal">
+                    <div class="modal fade" id="6384887c-cfe0-4c28-a8fe-1ba5c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Maternal</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    </p><form action="/emr/general/maternal_progresses/add" role="form" id="MaternalProgressAddForm" method="post" accept-charset="utf-8">
+                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[MaternalProgress][patient_id]" value="4210" id="MaternalProgressPatientId"><input type="hidden" name="data[MaternalProgress][ob_admission_id]" value="178" id="MaternalProgressObAdmissionId"><div class="form-group"><label for="MaternalProgressRecordDate" class="control-label">Record Date</label> <input name="data[MaternalProgress][record_date]" class="form-control datetimepicker hasDatepicker" type="text" id="MaternalProgressRecordDate"></div><div class="form-group">
+                                            <label for="MaternalProgressLReflexes" class="control-label">Deep tendon Reflexes (L)</label> <select name="data[MaternalProgress][l_reflexes]" class="form-control" id="MaternalProgressLReflexes">
+                                                <option value="">-- Choose --</option>
+                                                <option value="0">No Response</option>
+                                                <option value="1">Slugglish</option>
+                                                <option value="2">Normal</option>
+                                                <option value="3">Hyperactive</option>
+                                                <option value="4">Brisk + hyperactive</option>
+                                                <option value="C">Clonus</option>
+                                            </select>
+                                        </div><div class="form-group">
+                                            <label for="MaternalProgressRReflexes" class="control-label">Deep tendon Reflexes (R)</label> <select name="data[MaternalProgress][r_reflexes]" class="form-control" id="MaternalProgressRReflexes">
+                                                <option value="">-- Choose --</option>
+                                                <option value="0">No Response</option>
+                                                <option value="1">Slugglish</option>
+                                                <option value="2">Normal</option>
+                                                <option value="3">Hyperactive</option>
+                                                <option value="4">Brisk + hyperactive</option>
+                                                <option value="C">Clonus</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="MaternalProgressUrineProtein" class="control-label">Urine Protein</label> <input name="data[MaternalProgress][urine_protein]" class="form-control" maxlength="25" type="text" id="MaternalProgressUrineProtein"></div><div class="form-group"><label for="MaternalProgressUrineSugar" class="control-label">Urine Sugar</label> <input name="data[MaternalProgress][urine_sugar]" class="form-control" maxlength="25" type="text" id="MaternalProgressUrineSugar"></div><div class="form-group">
+                                            <label for="MaternalProgressVaginalBleeding" class="control-label">Vaginal bleeding</label> <select name="data[MaternalProgress][vaginal_bleeding]" class="form-control" id="MaternalProgressVaginalBleeding">
+                                                <option value="">-- Choose --</option>
+                                                <option value="NS">Normal Show</option>
+                                                <option value="ABN">Frank vaginal bleeding</option>
+                                            </select>
+                                        </div><div class="form-group">
+                                            <label for="MaternalProgressPain" class="control-label">Pain</label> <select name="data[MaternalProgress][pain]" class="form-control" id="MaternalProgressPain">
+                                                <option value="">-- Choose --</option>
+                                                <option value="0">0 No pain</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5 Distressing pain</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10 Highest intensity</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="MaternalProgressEdema" class="control-label">Edema (site/extend)</label> <textarea name="data[MaternalProgress][edema]" class="form-control" cols="30" rows="6" id="MaternalProgressEdema"></textarea></div><script type="text/javascript">
+                                                                                                                                                                                                                                                                                                  $(function () {
+                                                                                                                                                                                                                                                                                                      $('#MaternalProgressRecordDate').val(getDateTime());
+                                                                                                                                                                                                                                                                                                  });
+                                        </script>
+                                        <p></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Add Maternal">
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="maternal_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Deep tendon Reflexes (L/R)</td>
+                                    <td>Urine potein/sugar</td>
+                                    <td>Vaginal Bleeding</td>
+                                    <td>Pain</td>
+                                    <td>Edema (site, extend)</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="/emr/general/MaternalProgresses/delete/29" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                    </td>
+                                    <td>11/25/2022 11:48:00</td>
+                                    <td>1/0</td>
+                                    <td>2323/232</td>
+                                    <td>NS</td>
+                                    <td>0</td>
+                                    <td>23</td>
+                                    <td>Selvaraj Kandeepan  11/25/2022 01:20:38</td>
+                                    <td>Selvaraj Kandeepan  11/25/2022 01:20:38</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        * Deep tendon reflexes:
+                        <ul>
+                            <li>0 = No response</li>
+                            <li>1 = Sluggish</li>
+                            <li>2 = Normal</li>
+                            <li>3 = Hyperactive</li>
+                            <li>4 = Brisk + Hyperactive</li>
+                            <li>C = Clonus</li>
+                        </ul>
+                        * Vaginal Bleeding:
+                        <ul>
+                            <li>NS = Normal show response</li>
+                            <li>ABN = Frank vaginal bleeding</li>
+                        </ul>
+                        * Pain:
+                        <ul>
+                            <li>0 No pain</li>
+                            <li>5 Distressing pain</li>
+                            <li>10 Highest intensity</li>
+                        </ul>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#maternal_plus').click(function () {
+                                $('#6384887c-cfe0-4c28-a8fe-1ba5c0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="uterine">
+                    <div class="modal fade" id="6384887c-5ae0-4e25-95ec-1ba5c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Uterine</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    </p><form action="/emr/general/uterine_progresses/add" role="form" id="UterineProgressAddForm" method="post" accept-charset="utf-8">
+                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[UterineProgress][patient_id]" value="4210" id="UterineProgressPatientId"><input type="hidden" name="data[UterineProgress][ob_admission_id]" value="178" id="UterineProgressObAdmissionId"><div class="form-group"><label for="UterineProgressRecordDate" class="control-label">Record Date</label> <input name="data[UterineProgress][record_date]" class="form-control datetimepicker hasDatepicker" type="text" id="UterineProgressRecordDate"></div><div class="form-group">
+                                            <label for="UterineProgressMonitorMode" class="control-label">Monitor Mode</label> <select name="data[UterineProgress][monitor_mode]" class="form-control" id="UterineProgressMonitorMode">
+                                                <option value="">-- Choose --</option>
+                                                <option value="P">Palpation</option>
+                                                <option value="E">External</option>
+                                                <option value="I">Internal</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="UterineProgressFrequency" class="control-label">Frequency</label> <input name="data[UterineProgress][frequency]" class="form-control" maxlength="255" type="text" id="UterineProgressFrequency"></div><div class="form-group"><label for="UterineProgressDuration" class="control-label">Duration</label> <input name="data[UterineProgress][duration]" class="form-control" maxlength="255" type="text" id="UterineProgressDuration"></div><div class="form-group"><label for="UterineProgressPeakIup" class="control-label">Peak IUP</label> <input name="data[UterineProgress][peak_iup]" class="form-control" maxlength="255" type="text" id="UterineProgressPeakIup"></div><div class="form-group"><label for="UterineProgressRestingTone" class="control-label">Resting Tone</label> <input name="data[UterineProgress][resting_tone]" class="form-control" maxlength="255" type="text" id="UterineProgressRestingTone"></div><div class="form-group"><label for="UterineProgressIntensity" class="control-label">Intensity</label> <input name="data[UterineProgress][intensity]" class="form-control" maxlength="255" type="text" id="UterineProgressIntensity"></div><div class="form-group"><label for="UterineProgressMvus" class="control-label">MVUs</label> <input name="data[UterineProgress][mvus]" class="form-control" maxlength="255" type="text" id="UterineProgressMvus"></div><script type="text/javascript">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          $(function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              $('#UterineProgressRecordDate').val(getDateTime());
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          });
+                                        </script>
+                                        <p></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Add Uterine">
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="uterine_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Monitor Mode</td>
+                                    <td>Frequency</td>
+                                    <td>Duration</td>
+                                    <td>Peak IUP</td>
+                                    <td>Resting tone</td>
+                                    <td>Intensity</td>
+                                    <td>MVUs</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        * Monitor mode:
+                        <ul>
+                            <li>P = Palpation</li>
+                            <li>E = External</li>
+                            <li>I = Internal</li>
+                        </ul>
+                        * MVUs Montevideo units: The sum of the peak of each uterine contraction minus its resting tone, in a 10-minute period.
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#uterine_plus').click(function () {
+                                $('#6384887c-5ae0-4e25-95ec-1ba5c0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="fetal">
+                    <div class="modal fade" id="6384887c-a4a4-4d31-91c2-1ba5c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Fetal</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    </p><form action="/emr/general/fetal_progresses/add" role="form" id="FetalProgressAddForm" method="post" accept-charset="utf-8">
+                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[FetalProgress][patient_id]" value="4210" id="FetalProgressPatientId"><input type="hidden" name="data[FetalProgress][ob_admission_id]" value="178" id="FetalProgressObAdmissionId"><div class="form-group"><label for="FetalProgressRecordDate" class="control-label">Record Date</label> <input name="data[FetalProgress][record_date]" class="form-control datetimepicker hasDatepicker" type="text" id="FetalProgressRecordDate"></div><div class="form-group">
+                                            <label for="FetalProgressMonitorMode" class="control-label">Monitor Mode</label> <select name="data[FetalProgress][monitor_mode]" class="form-control" id="FetalProgressMonitorMode">
+                                                <option value="">-- Choose --</option>
+                                                <option value="A">Auscultation (fetoscope)</option>
+                                                <option value="D">Doppler</option>
+                                                <option value="E">External</option>
+                                                <option value="I">Internal</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="FetalProgressBaseline" class="control-label">Baseline (FHR)</label> <input name="data[FetalProgress][baseline]" class="form-control" maxlength="255" type="text" id="FetalProgressBaseline"></div><div class="form-group">
+                                            <label for="FetalProgressStv" class="control-label">STV</label> <select name="data[FetalProgress][stv]" class="form-control" id="FetalProgressStv">
+                                                <option value="">-- Choose --</option>
+                                                <option value="+">Present (roughness of tracing line present)</option>
+                                                <option value="0">Absent (tracing line is smooth)</option>
+                                            </select>
+                                        </div><div class="form-group">
+                                            <label for="FetalProgressLtv" class="control-label">LTV</label> <select name="data[FetalProgress][ltv]" class="form-control" id="FetalProgressLtv">
+                                                <option value="">-- Choose --</option>
+                                                <option value="0">0-2 BPM = Absent</option>
+                                                <option value="1">3-5 BPM = Minimal</option>
+                                                <option value="2">6-25 BPM = Absent</option>
+                                                <option value="3">&gt;25 BPM = Marked</option>
+                                            </select>
+                                        </div><div class="form-group"><label for="FetalProgressAccelerations" class="control-label">Accelerations</label> <input name="data[FetalProgress][accelerations]" class="form-control" maxlength="255" type="text" id="FetalProgressAccelerations"></div><div class="form-group"><label for="FetalProgressDecelerations" class="control-label">Decelerations</label> <input name="data[FetalProgress][decelerations]" class="form-control" maxlength="255" type="text" id="FetalProgressDecelerations"></div><div class="form-group"><label for="FetalProgressMembrances" class="control-label">Membrances/fluid</label> <input name="data[FetalProgress][membrances]" class="form-control" maxlength="255" type="text" id="FetalProgressMembrances"></div><div class="form-group"><label for="FetalProgressScalp" class="control-label">Scalp pH</label> <input name="data[FetalProgress][scalp]" class="form-control" maxlength="255" type="text" id="FetalProgressScalp"></div><script type="text/javascript">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               $(function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   $('#FetalProgressRecordDate').val(getDateTime());
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               });
+                                        </script>
+                                        <p></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Add Fetal">
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="fetal_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Monitor Mode</td>
+                                    <td>Baseline (FHR)</td>
+                                    <td>STV</td>
+                                    <td>LTV</td>
+                                    <td>Accelerations</td>
+                                    <td>Decelerations</td>
+                                    <td>Membrances/fluid</td>
+                                    <td>Scalp pH</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        * Monitor Mode:
+                        <ul>
+                            <li>A = Auscultation (fetoscope)</li>
+                            <li>D = Doppler</li>
+                            <li>E = External</li>
+                            <li>I = Internal</li>
+                        </ul>
+                        * STV short-term variability:
+                        <ul>
+                            <li>+ = Present (roughness of tracing line present </li>
+                            <li>0 = Absent (tracing line is smooth) </li>
+                        </ul>
+                        * LTV long-term variability:
+                        <ul>
+                            <li>  '0' = 0-2 BPM = Absent</li>
+                            <li>  '1' = 3-5 BPM = Minimal</li>
+                            <li>  '2' = 6-25 BPM = Absent</li>
+                            <li>  '3' = &gt;25 BPM = Marked</li>
+
+
+                        </ul>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#fetal_plus').click(function () {
+                                $('#6384887c-a4a4-4d31-91c2-1ba5c0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="intervention">
+                    <div class="modal fade" id="6384887c-bfa4-47d4-81ae-1ba5c0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Intervention</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    </p><form action="/emr/general/intervention_progresses/add" role="form" id="InterventionProgressAddForm" method="post" accept-charset="utf-8">
+                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[InterventionProgress][patient_id]" value="4210" id="InterventionProgressPatientId"><input type="hidden" name="data[InterventionProgress][ob_admission_id]" value="178" id="InterventionProgressObAdmissionId"><div class="form-group"><label for="InterventionProgressRecordDate" class="control-label">Record Date</label> <input name="data[InterventionProgress][record_date]" class="form-control datetimepicker hasDatepicker" type="text" id="InterventionProgressRecordDate"></div><div class="form-group"><label for="InterventionProgressTreatments" class="control-label">Treatments</label> <input name="data[InterventionProgress][treatments]" class="form-control" maxlength="255" type="text" id="InterventionProgressTreatments"></div><div class="form-group"><label for="InterventionProgressTeaching" class="control-label">Teaching/support</label> <input name="data[InterventionProgress][teaching]" class="form-control" maxlength="255" type="text" id="InterventionProgressTeaching"></div><div class="form-group"><label for="InterventionProgressTouch" class="control-label">Touch</label> <input name="data[InterventionProgress][touch]" class="form-control" maxlength="255" type="text" id="InterventionProgressTouch"></div><div class="form-group"><label for="InterventionProgressPosition" class="control-label">Position/activity</label> <input name="data[InterventionProgress][position]" class="form-control" maxlength="255" type="text" id="InterventionProgressPosition"></div><div class="form-group"><label for="InterventionProgressPhysicalCare" class="control-label">Physical Care</label> <input name="data[InterventionProgress][physical_care]" class="form-control" maxlength="255" type="text" id="InterventionProgressPhysicalCare"></div><script type="text/javascript">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $(function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $('#InterventionProgressRecordDate').val(getDateTime());
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                        </script>
+                                        <p></p>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Add Intervention">
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="intervention_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Treatment</td>
+                                    <td>Teaching/support</td>
+                                    <td>Touch</td>
+                                    <td>Position/activity</td>
+                                    <td>Resting tone</td>
+                                    <td>Physical care</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#intervention_plus').click(function () {
+                                $('#6384887c-bfa4-47d4-81ae-1ba5c0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+                    </script>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</div>

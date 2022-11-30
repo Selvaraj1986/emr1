@@ -4,7 +4,7 @@
         <div class="breadcrumb">
             <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
             <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
-            <a href="/PatientHeights/edit/@Model.id">Edit Height</a>
+            <a href="/Heights/edit/@Model.id">Edit Height</a>
         </div>
         <partial name="_PatientsInfo" model="@Model" />
         <div class="row-fluid">
@@ -22,7 +22,7 @@
                             <div role="tabpanel" class="tab-pane active" id="home">
                                 <div class="form-group">
                                     <label for="PatientHeightRecordDate" class="control-label">Record Date</label>
-                                    <input asp-for="heightsModel.record_date" class="form-control" />
+                                    <input asp-for="heightsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                     <input type="hidden" asp-for="heightsModel.id" />
                                     <span asp-validation-for="@Model.heightsModel.record_date" class="text-danger"></span>
                                 </div>

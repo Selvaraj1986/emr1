@@ -1,0 +1,47 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="#">Obstetrics</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist" id="admissionTab">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Obstetrics Admission</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <a href="/Obstetrics/add" class="btn btn-success">Add Obstetrics Admission</a>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr><td>&nbsp;</td><td>Record Date</td><td>Created</td><td>Modified</td></tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.obAdmissionsModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Obstetrics/view/@item.id"><i class="fa fa-eye text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            &nbsp;&nbsp;
+                                            <a href="/Obstetrics/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.creator </td>
+                                        <td>@item.modifier </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

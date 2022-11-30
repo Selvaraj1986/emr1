@@ -29,15 +29,15 @@ namespace emr.Services
                           select new PatientMedicationsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               medication = d.medication,
                               created = d.created,
                               modified = d.modified,
                               patient_id = d.patient_id,
                               dose = d.dose,
-                              frequency=d.frequency,
-                              taken_today= (d.taken_today == null ? false : d.taken_today),
-                              brought_with= (d.brought_with == null ? false : d.brought_with),
+                              frequency = d.frequency,
+                              taken_today = (d.taken_today == null ? false : d.taken_today),
+                              brought_with = (d.brought_with == null ? false : d.brought_with),
                           }).FirstOrDefault();
 
                 var peopleCreated = (from p in _dbContext.people where p.id == result.creator_id select p).FirstOrDefault();
@@ -74,12 +74,12 @@ namespace emr.Services
                 medication = _dbContext.patient_medications.Where(id => id.id == model.id).FirstOrDefault();
                 if (medication != null)
                 {
-                    medication.record_date = model.record_date;
+                    medication.record_date = Helpers.ToDateFormat(model.record_date);
                     medication.medication = model.medication;
                     medication.dose = model.dose;
                     medication.frequency = model.frequency;
-                    medication.taken_today= model.taken_today;
-                    medication.brought_with= model.brought_with;
+                    medication.taken_today = model.taken_today;
+                    medication.brought_with = model.brought_with;
                     medication.modifier_id = model.modifier_id;
                     medication.modified = DateTime.Now;
                 }

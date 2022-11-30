@@ -14,7 +14,7 @@ namespace emr.Models
         public string? medical_number { get; set; }
         public string? first_name { get; set; }
         public string? last_name { get; set; }
-        public string? dob { get; set; }
+        public DateTime dob { get; set; }
         public string? gender { get; set; }
         public string? description { get; set; }
         public int course_id { get; set; }

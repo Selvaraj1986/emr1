@@ -1,0 +1,55 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Notes/edit/@Model.id">Edit Note</a>
+        </div>
+
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Patient Note</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <div class="form-group">
+                                    <label for="PatientNoteRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="notesModel.id" />
+                                    <input asp-for="notesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                    <span asp-validation-for="@Model.notesModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="PatientNoteNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="notesModel.note" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.notesModel.note" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Note">		
+                            <a href="/Patients/view/@Model.notesModel.patient_id/#notes" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

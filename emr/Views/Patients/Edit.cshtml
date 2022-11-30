@@ -61,7 +61,7 @@
 
                                 </div><div class="form-group">
                                     <label for="PatientDescription" class="control-label">Description</label>
-                                    <input asp-for="description" class="form-control" />
+                                    <textarea asp-for="description" class="form-control"></textarea>
                                     <span asp-validation-for="description" class="text-danger"></span>
                                 </div>
                             </div>
@@ -80,6 +80,14 @@
                         </div>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#PatientDob").datepicker({
+                            changeMonth: true,
+                            changeYear: true
+                        });
+                    });
+                </script>
             </form>
         </div>
     </div>

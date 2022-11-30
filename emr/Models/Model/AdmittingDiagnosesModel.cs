@@ -8,7 +8,7 @@ namespace emr.Models.Model
         public int id { get; set; }
         //[Required(ErrorMessage = "Please enter Record Date")]
         //[DisplayName("Record Date")]
-        public DateTime record_date { get; set; }
+        public string? record_date { get; set; }
         //[Required(ErrorMessage = "Please enter Diagnosis")]
         //[DisplayName("Diagnosis")]
         public int patient_id { get; set; }

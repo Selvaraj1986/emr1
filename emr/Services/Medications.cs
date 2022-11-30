@@ -96,17 +96,15 @@ namespace emr.Services
             var result = new object();
             try
             {
-                result = (from m in _dbContext.medications where m.active == true select new MedicationsModel
-                {
-                    id = m.id,
-                    created = m.created,
-                    creator_id = m.creator_id,
-                    modified = m.modified,
-                    modifier_id = m.modifier_id,
-                    generic = m.generic.ToCleanString(),
-                    brand = m.brand.ToCleanString(),
-                    classification = m.classification.ToCleanString(),
-                }).ToList();
+                result = (from m in _dbContext.medications
+                          where m.active == true
+                          select new MedicationsModel
+                          {
+                              id = m.id,
+                              generic = m.generic.ToCleanString(),
+                              brand = m.brand.ToCleanString(),
+                              classification = m.classification.ToCleanString(),
+                          }).ToList();
             }
             catch (Exception ex)
             {
@@ -130,9 +128,9 @@ namespace emr.Services
                           select new MedicationsModel
                           {
                               id = m.id,
-                              created = m.created,
+                              created = Helpers.ToDateTimeFormat(m.created),
                               creator_id = m.creator_id,
-                              modified = m.modified,
+                              modified = Helpers.ToDateTimeFormat(m.modified),
                               modifier_id = m.modifier_id,
                               generic = m.generic,
                               brand = m.brand,

@@ -9,6 +9,17 @@
                 <a href="/Patients#"><i class="fa fa-user"></i> Patients<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="/Patients"><i class="fa fa-search"></i> Search</a></li>
+                    @{
+                        var sessionName = new Byte[20];
+                        bool pIDOK = Context.Session.TryGetValue("pId", out sessionName);
+
+                        if (pIDOK)
+                        {
+                            <li><a href="/Admission"><i class="fa fa-clipboard"></i> Admissions</a></li>
+                            <li><a href="/Obstetrics"><i class="fa fa-female"></i> Obstetrics</a></li>
+                        }
+                    }
+
                 </ul>
             </li>
         </ul>

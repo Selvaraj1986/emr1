@@ -1,0 +1,64 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/ProviderOrders/edit/@Model.id">Edit Room</a>
+        </div>
+        <partial name="_PatientsInfo" model="@Model" />
+        <div class="row-fluid">
+            <form asp-action="Update">
+                <div class="col-md-8">
+
+
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Provider Order</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                              
+                                <div class="form-group required">
+                                    <label for="ProviderOrderRecordDate" class="control-label">Record Date</label>
+                                    <input type="hidden" asp-for="providerOrdersModel.id" />
+                                    <input asp-for="providerOrdersModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                    <span asp-validation-for="@Model.providerOrdersModel.record_date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="ProviderOrderProviderId" class="control-label">Provider</label>
+                                    <select id="providerOrdersModel.provider_id" class="form-control col-md-8" name="providerOrdersModel.provider_id"
+                                            asp-for="providerOrdersModel.provider_id"
+                                            asp-items="@ViewBag.provider">
+                                        <option value="">-- Choose Provider --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="ProviderOrderNotes" class="control-label">Notes</label>
+                                    <textarea asp-for="providerOrdersModel.notes" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.providerOrdersModel.notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Save Order">	
+                            <a href="/Patients/view/@Model.providerOrdersModel.patient_id/#provider_orders" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

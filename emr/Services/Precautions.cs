@@ -29,7 +29,7 @@ namespace emr.Services
                           select new PrecautionsModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               status = d.status,
                               created = d.created,
                               modified = d.modified,
@@ -71,7 +71,7 @@ namespace emr.Services
                 precautions = _dbContext.precautions.Where(id => id.id == model.id).FirstOrDefault();
                 if (precautions != null)
                 {
-                    precautions.record_date = model.record_date;
+                    precautions.record_date = Helpers.ToDateFormat(model.record_date);
                     precautions.status = model.status;
                     precautions.notes = model.notes;
                     precautions.modifier_id = model.modifier_id;

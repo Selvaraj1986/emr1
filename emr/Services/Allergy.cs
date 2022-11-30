@@ -29,7 +29,7 @@ namespace emr.Services
                           select new AllergyModel
                           {
                               id = d.id,
-                              record_date = d.record_date,
+                              record_date = Helpers.ToDateString(d.record_date),
                               allergy_type = d.allergy_type,
                               created = d.created,
                               modified = d.modified,
@@ -71,7 +71,7 @@ namespace emr.Services
                 allergies = _dbContext.allergies.Where(id => id.id == model.id).FirstOrDefault();
                 if (allergies != null)
                 {
-                    allergies.record_date = model.record_date;
+                    allergies.record_date = Helpers.ToDateFormat(model.record_date);
                     allergies.allergy_type = model.allergy_type;
                     allergies.allergy = model.allergy;
                     allergies.modifier_id = model.modifier_id;

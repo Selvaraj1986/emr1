@@ -7,8 +7,7 @@
             <a href="/Precautions/edit/@Model.id">Edit Precaution</a>
         </div>
         <partial name="_PatientsInfo" model="@Model" />
-        <h1>Edit Precaution</h1>
-        <div class="row-fluid">
+               <div class="row-fluid">
             <form asp-action="Update">
                 <div class="col-md-8">
 
@@ -24,7 +23,7 @@
                                 <div class="form-group">
                                     <label for="PrecautionRecordDate" class="control-label">Record Date</label>
                                     <input type="hidden" asp-for="precautionsModel.id" />
-                                    <input asp-for="precautionsModel.record_date" class="form-control" />
+                                    <input asp-for="precautionsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                     <span asp-validation-for="@Model.precautionsModel.record_date" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">

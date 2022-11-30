@@ -29,7 +29,13 @@ namespace emr.Models.DBContext
         public DbSet<heights> heights { get; set; } = null!;
         public DbSet<weights> weights { get; set; } = null!;
         public DbSet<daily_activities> daily_activities { get; set; } = null!;
-
+        public DbSet<treatments> treatments { get; set; } = null!;
+        public DbSet<consults> consults { get; set; } = null!;
+        public DbSet<dietaries> dietaries { get; set; } = null!;
+        public DbSet<provider_orders> provider_orders { get; set; } = null!;
+        public DbSet<notes> notes { get; set; } = null!;
+        public DbSet<admissions> admissions { get; set; } = null!;
+        public DbSet<ob_admissions> ob_admissions { get; set; } = null!;
     }
 
 }

@@ -1,0 +1,360 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Obstetrics">Obstetrics Admissions</a>/
+        </div>
+
+        <h1>Add Obstetrics Admission</h1>
+        <div class="row-fluid">
+            <form asp-action="Add">
+                <div class="col-md-8">
+
+                    <div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Admission</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <table class="table table-striped" style="width: 95%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 20%"><label class="control-label">Area</label></td>
+                                            <td style="width: 80%"><label class="control-label">Admission</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Record Date</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input asp-for="@Model.obAdmissionsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                                    <span asp-validation-for="@Model.obAdmissionsModel.record_date" class="text-danger"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Reason for Admission</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionLabor">
+                                                            <input type="hidden" id="ObAdmissionLabor_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.labor" id="ObAdmissionLabor"> Labor / SROM
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionInduction">
+                                                            <input type="hidden" name="data[ObAdmission][induction]" id="ObAdmissionInduction_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.induction" id="ObAdmissionInduction"> Induction
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionInductionNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.induction_notes" class="form-control" cols="30" rows="6" id="ObAdmissionInductionNotes"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionPrimarycs">
+                                                            <input type="hidden" name="data[ObAdmission][primarycs]" id="ObAdmissionPrimarycs_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.primarycs" id="ObAdmissionPrimarycs"> Primary C/S
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionPrimarycsNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.primarycs_notes" class="form-control" cols="30" rows="6" id="ObAdmissionPrimarycsNotes"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionObservation">
+                                                            <input type="hidden" name="data[ObAdmission][observation]" id="ObAdmissionObservation_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.observation" id="ObAdmissionObservation"> Observation
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionObservationNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.observation_notes" class="form-control" cols="30" rows="6" id="ObAdmissionObservationNotes"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionObComplication" class="control-label">OB / Medical complication</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.ob_complication" class="form-control" cols="30" rows="6" id="ObAdmissionObComplication"></textarea>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Current Pregnancy Labs</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionNpc">
+                                                            <input type="hidden" name="data[ObAdmission][npc]" id="ObAdmissionNpc_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.npc" id="ObAdmissionNpc"> NPC
+                                                        </label>
+                                                    </div>
+                                                </div><div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionPol">
+                                                            <input type="hidden" name="data[ObAdmission][pol]" id="ObAdmissionPol_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.pol" id="ObAdmissionPol"> POL
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionPprom">
+                                                            <input type="hidden" asp-for="@Model.obAdmissionsModel.pprom" id="ObAdmissionPprom_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.pprom" id="ObAdmissionPprom"> PPROM
+                                                        </label>
+                                                    </div>
+                                                </div><div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionCerclage">
+                                                            <input type="hidden" id="ObAdmissionCerclage_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.cerclage" id="ObAdmissionCerclage"> Cerclage
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionPih">
+                                                            <input type="hidden" name="data[ObAdmission][pih]" id="ObAdmissionPih_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.pih" id="ObAdmissionPih"> PIH
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionChrhtn">
+                                                            <input type="hidden" name="data[ObAdmission][chrhtn]" id="ObAdmissionChrhtn_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.chrhtn" id="ObAdmissionChrhtn"> Chr. HTN
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionOther">
+                                                            <input type="hidden" name="data[ObAdmission][other]" id="ObAdmissionOther_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.other" id="ObAdmissionOther"> Other
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionOtherNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.other_notes" class="form-control" cols="30" rows="6" id="ObAdmissionOtherNotes"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionDiabetes">
+                                                            <input type="hidden" name="data[ObAdmission][diabetes]" id="ObAdmissionDiabetes_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.diabetes" id="ObAdmissionDiabetes"> Diabetes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionDiabetesNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.diabetes_notes" class="form-control" cols="30" rows="6" id="ObAdmissionDiabetesNotes"></textarea>
+                                                </div>
+                                                <div class="form-group"><label for="ObAdmissionDiet" class="control-label">Diet</label> <textarea asp-for="@Model.obAdmissionsModel.diet" class="form-control" cols="30" rows="6" id="ObAdmissionDiet"></textarea></div>
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionInsulin">
+                                                            <input type="hidden" name="data[ObAdmission][insulin]" id="ObAdmissionInsulin_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.insulin" id="ObAdmissionInsulin"> Insulin
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"><label for="ObAdmissionInsulinNotes" class="control-label">Notes</label> <textarea asp-for="@Model.obAdmissionsModel.insulin_notes" class="form-control" cols="30" rows="6" id="ObAdmissionInsulinNotes"></textarea></div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionAmniocentesis"><input type="hidden" name="data[ObAdmission][amniocentesis]" id="ObAdmissionAmniocentesis_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.amniocentesis" id="ObAdmissionAmniocentesis"> Amniocentesis</label></div></div>
+                                                <div class="form-group"><label for="ObAdmissionAmniocentesisNotes" class="control-label">Notes</label> <textarea asp-for="@Model.obAdmissionsModel.amniocentesis_notes" class="form-control" cols="30" rows="6" id="ObAdmissionAmniocentesisNotes"></textarea></div><div class="form-group"><label for="ObAdmissionBloodType" class="control-label">Bld type /RH</label> <input asp-for="@Model.obAdmissionsModel.blood_type" class="form-control" maxlength="25" type="text" id="ObAdmissionBloodType"></div><div class="form-group"><label for="ObAdmissionRhogam" class="control-label">Date Rhogam</label> <input asp-for="@Model.obAdmissionsModel.rhogam" class="form-control" maxlength="25" type="text" id="ObAdmissionRhogam"></div><div class="form-group">
+                                                    <label for="ObAdmissionAntibodyScreen" class="control-label">Antibody screen</label> <select asp-for="@Model.obAdmissionsModel.antibody_screen" class="form-control" id="ObAdmissionAntibodyScreen">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionRubella" class="control-label">Rubella</label> <select asp-for="@Model.obAdmissionsModel.rubella" class="form-control" id="ObAdmissionRubella">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Non-immune">Non-immune</option>
+                                                        <option value="Immune">Immune</option>
+                                                    </select>
+                                                </div><div class="form-group"><div class="checkbox"><label for="ObAdmissionChickpox"><input type="hidden" name="data[ObAdmission][chickpox]" id="ObAdmissionChickpox_" value="0"><input type="checkbox" name="data[ObAdmission][chickpox]" id="ObAdmissionChickpox"> Recent exposure to chick pox</label></div></div><div class="form-group"><label for="ObAdmissionCurrentMeds" class="control-label">Current meds</label> <textarea name="data[ObAdmission][current_meds]" class="form-control" cols="30" rows="6" id="ObAdmissionCurrentMeds"></textarea></div><div class="form-group">
+                                                    <label for="ObAdmissionHepatitisB" class="control-label">Hepatitis B</label> <select asp-for="@Model.obAdmissionsModel.hepatitis_b" class="form-control" id="ObAdmissionHepatitisB">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionHiv" class="control-label">HIV</label> <select asp-for="@Model.obAdmissionsModel.hiv" class="form-control" id="ObAdmissionHiv">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionGroupBStrep" class="control-label">Group B Strep</label> <select asp-for="@Model.obAdmissionsModel.group_b_strep" class="form-control" id="ObAdmissionGroupBStrep">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionGc" class="control-label">GC</label> <select asp-for="@Model.obAdmissionsModel.gc" class="form-control" id="ObAdmissionGc">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionChlamydia" class="control-label">Chlamydia</label> <select asp-for="@Model.obAdmissionsModel.chlamydia" class="form-control" id="ObAdmissionChlamydia">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionRpr" class="control-label">Rpr</label> <select asp-for="@Model.obAdmissionsModel.rpr" class="form-control" id="ObAdmissionRpr">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Neg">Neg</option>
+                                                        <option value="Pos">Pos</option>
+                                                        <option value="Not Tested">Not Tested</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Previous OB History</label></td>
+                                            <td>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousPol"><input type="hidden" name="data[ObAdmission][previous_pol]" id="ObAdmissionPreviousPol_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_pol" id="ObAdmissionPreviousPol"> POL</label></div></div><div class="form-group"><div class="checkbox"><label for="ObAdmissionMultiGestation"><input type="hidden" name="data[ObAdmission][multi_gestation]" id="ObAdmissionMultiGestation_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.multi_gestation" id="ObAdmissionMultiGestation"> Multiple gestation</label></div></div><div class="form-group"><label for="ObAdmissionPrevCsType" class="control-label">Prev C/S type</label> <input asp-for="@Model.obAdmissionsModel.prev_cs_type" class="form-control" maxlength="25" type="text" id="ObAdmissionPrevCsType"></div><div class="form-group"><label for="ObAdmissionPrevCsReason" class="control-label">Reason</label> <textarea asp-for="@Model.obAdmissionsModel.prev_cs_reason" class="form-control" cols="30" rows="6" id="ObAdmissionPrevCsReason"></textarea></div><div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousPih"><input type="hidden" name="data[ObAdmission][previous_pih]" id="ObAdmissionPreviousPih_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_pih" id="ObAdmissionPreviousPih"> PIH</label></div></div><div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousHtn"><input type="hidden" name="data[ObAdmission][previous_htn]" id="ObAdmissionPreviousHtn_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_htn" id="ObAdmissionPreviousHtn"> Chronic HTN</label></div></div><div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousDiabetes"><input type="hidden" name="data[ObAdmission][previous_diabetes]" id="ObAdmissionPreviousDiabetes_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_diabetes" id="ObAdmissionPreviousDiabetes"> Diabetes</label></div></div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionPreviousDiabetesNotes" class="control-label">Notes</label>
+                                                    <textarea asp-for="@Model.obAdmissionsModel.previous_diabetes_notes" class="form-control" cols="30" rows="6" id="ObAdmissionPreviousDiabetesNotes"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox"><label for="ObAdmissionPreviousStillbirth"><input type="hidden" name="data[ObAdmission][previous_stillbirth]" id="ObAdmissionPreviousStillbirth_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_stillbirth" id="ObAdmissionPreviousStillbirth"> Stillbirth/demise</label></div>
+                                                </div><div class="form-group">
+                                                    <div class="checkbox"><label for="ObAdmissionPreviousNeodeath"><input type="hidden" name="data[ObAdmission][previous_neodeath]" id="ObAdmissionPreviousNeodeath_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_neodeath" id="ObAdmissionPreviousNeodeath"> Neodeath</label></div>
+                                                </div><div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousAnomalies"><input type="hidden" name="data[ObAdmission][previous_anomalies]" id="ObAdmissionPreviousAnomalies_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_anomalies" id="ObAdmissionPreviousAnomalies"> Anomalies</label></div></div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousPrecipitous"><input type="hidden" name="data[ObAdmission][previous_precipitous]" id="ObAdmissionPreviousPrecipitous_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_precipitous" id="ObAdmissionPreviousPrecipitous"> Precipitous labor (&lt; 3H)</label></div></div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousMacrosomia"><input type="hidden" name="data[ObAdmission][previous_macrosomia]" id="ObAdmissionPreviousMacrosomia_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_macrosomia" id="ObAdmissionPreviousMacrosomia"> Macrosomia</label></div></div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousPpHemorrhage"><input type="hidden" name="data[ObAdmission][previous_pp_hemorrhage]" id="ObAdmissionPreviousPpHemorrhage_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_pp_hemorrhage" id="ObAdmissionPreviousPpHemorrhage"> PP Hemorrhage</label></div></div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionPreviousHx"><input type="hidden" name="data[ObAdmission][previous_hx]" id="ObAdmissionPreviousHx_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.previous_hx" id="ObAdmissionPreviousHx"> Hx Transfusion reaction</label></div></div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionPreviousOther" class="control-label">Previous Other</label> <textarea asp-for="@Model.obAdmissionsModel.previous_other" class="form-control" label="Other" cols="30" rows="6" id="ObAdmissionPreviousOther"></textarea>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Fetal Assessment</label></td>
+                                            <td>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionWnl"><input type="hidden" name="data[ObAdmission][wnl]" id="ObAdmissionWnl_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.wnl" id="ObAdmissionWnl"> WNL</label></div></div><label for="ObAdmissionVariance">Variance</label>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionNrfs"><input type="hidden" name="data[ObAdmission][nrfs]" id="ObAdmissionNrfs_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.nrfs" id="ObAdmissionNrfs"> NRFS</label></div></div>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionFhr" class="control-label">FHR</label> <select asp-for="@Model.obAdmissionsModel.fhr" class="form-control" id="ObAdmissionFhr">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="<110">&lt;110</option>
+                                                        <option value=">160">&gt;160</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionLtv" class="control-label">LTV</label> <select asp-for="@Model.obAdmissionsModel.ltv" class="form-control" id="ObAdmissionLtv">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Absent">Absend</option>
+                                                        <option value="Minimal">Minimal</option>
+                                                        <option value="Increased">Increased</option>
+                                                    </select>
+                                                </div><div class="form-group">
+                                                    <label for="ObAdmissionStv" class="control-label">STV</label> <select asp-for="@Model.obAdmissionsModel.stv" class="form-control" id="ObAdmissionStv">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Absent">Absend</option>
+                                                        <option value="Minimal">Minimal</option>
+                                                        <option value="Increased">Increased</option>
+                                                    </select>
+                                                </div><label for="ObAdmissionDecelerations">Decelerations</label><div class="form-group">
+                                                    <div class="checkbox">
+                                                        <label for="ObAdmissionDecreasedFetalMovement">
+                                                            <input type="hidden" name="data[ObAdmission][decreased_fetal_movement]" id="ObAdmissionDecreasedFetalMovement_" value="0">
+                                                            <input type="checkbox" asp-for="@Model.obAdmissionsModel.decreased_fetal_movement" id="ObAdmissionDecreasedFetalMovement"> Decreased fetal movement
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionIugr"><input type="hidden" name="data[ObAdmission][iugr]" id="ObAdmissionIugr_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.iugr" id="ObAdmissionIugr"> IUGR</label></div></div>
+                                                <div class="form-group"><label for="ObAdmissionDecelerationsNotes" class="control-label">Notes</label> <textarea asp-for="@Model.obAdmissionsModel.decelerations_notes" class="form-control" cols="30" rows="6" id="ObAdmissionDecelerationsNotes"></textarea></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Drug/Alcohol/Tobacco Usage</label></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label for="ObAdmissionTobaccoUse" class="control-label">Tobacco Use</label> <select asp-for="@Model.obAdmissionsModel.tobacco_use" class="form-control" id="ObAdmissionTobaccoUse">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Denies">Denies</option>
+                                                        <option value="Yes">Yes</option>
+                                                    </select>
+                                                </div><div class="form-group"><label for="ObAdmissionTobaccoUseAmount" class="control-label">Amt</label> <input asp-for="@Model.obAdmissionsModel.tobacco_use_amount" class="form-control" maxlength="255" type="text" id="ObAdmissionTobaccoUseAmount"></div><div class="form-group">
+                                                    <label for="ObAdmissionAlcoholUse" class="control-label">Alcohol Use</label> <select asp-for="@Model.obAdmissionsModel.alcohol_use" class="form-control" id="ObAdmissionAlcoholUse">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Denies">Denies</option>
+                                                        <option value="Yes">Yes</option>
+                                                    </select>
+                                                </div><div class="form-group"><label for="ObAdmissionAlcoholUseAmount" class="control-label">Amt</label> <input asp-for="@Model.obAdmissionsModel.alcohol_use_amount" class="form-control" maxlength="255" type="text" id="ObAdmissionAlcoholUseAmount"></div><div class="form-group">
+                                                    <label for="ObAdmissionDrugUse" class="control-label">Drug Use</label> <select asp-for="@Model.obAdmissionsModel.drug_use" class="form-control" id="ObAdmissionDrugUse">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="Denies">Denies</option>
+                                                        <option value="Yes">Yes</option>
+                                                    </select>
+                                                </div><div class="form-group"><label for="ObAdmissionDrugUseAmount" class="control-label">Amt</label> <input asp-for="@Model.obAdmissionsModel.drug_use_amount" class="form-control" maxlength="255" type="text" id="ObAdmissionDrugUseAmount"></div><div class="form-group">
+                                                    <label for="ObAdmissionPrimaryLanguage" class="control-label">Primary Language</label> <select asp-for="@Model.obAdmissionsModel.primary_language" class="form-control" id="ObAdmissionPrimaryLanguage">
+                                                        <option value="">-- Choose --</option>
+                                                        <option value="English">English</option>
+                                                        <option value="Spanish">Spanish</option>
+                                                    </select>
+                                                </div><div class="form-group"><label for="ObAdmissionOtherLanguage" class="control-label">Other Language</label> <input asp-for="@Model.obAdmissionsModel.other_language" class="form-control" maxlength="255" type="text" id="ObAdmissionOtherLanguage"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label">Pain Assessment</label></td>
+                                            <td>
+                                                <div class="form-group"><div class="checkbox"><label for="ObAdmissionOngoingPain"><input type="hidden" name="data[ObAdmission][ongoing_pain]" id="ObAdmissionOngoingPain_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.ongoing_pain" id="ObAdmissionOngoingPain"> 1. Do you have any ongoing pain problem?</label></div></div><div class="form-group">
+                                                    <div class="checkbox"><label for="ObAdmissionCurrentPain"><input type="hidden" name="data[ObAdmission][current_pain]" id="ObAdmissionCurrentPain_" value="0"><input type="checkbox" asp-for="@Model.obAdmissionsModel.current_pain" id="ObAdmissionCurrentPain"> 2. Do you have any pain now?</label></div>
+                                                </div>	<label class="control-label">
+                                                    3. If any of the above question are answered yes, the patient has a positive pain screening.<br>
+                                                    4. Paitent to be given pain management educaiton material Complete pain / sympton assesment on flowsheet.<br>
+                                                    5. Plese proceed to complete pain assessment.
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 stay-top-right">
+                    <div class="well" style="margin-top:40px;">
+                        <div style="font-weight:bold; margin-bottom:15px;"><i class="fa fa-list"></i> Actions</div>
+                        <div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Create Admission">				<a href="/admissions" class="btn btn-danger btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#AdmissionRecordDate').val(getDateTime());
+            });
+        </script>
+    </div>
+</div>

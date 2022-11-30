@@ -1,0 +1,674 @@
+﻿@model emr.Models.Model.PatientsModel
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px;">
+        <div class="breadcrumb">
+            <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/
+            <a href="/Patients">Patients</a>/
+            <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
+            <a href="/Admission">Admissions</a>
+        </div>
+
+        <partial name="_PatientsInfo" model="@Model" />
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="admissionTab">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab"
+                       data-toggle="tab">Admission Main</a>
+                </li>
+                <li role="presentation">
+                    <a href="#allergies" aria-controls="address" role="tab"
+                       data-toggle="tab">Allergies</a>
+                </li>
+                <li role="presentation">
+                    <a href="#medications" aria-controls="address" role="tab"
+                       data-toggle="tab">Medication History</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="command-box">
+                        <a href="/Admission/edit/@Model.admissionsModel.id" class="btn btn-success btn-sm">Edit Details</a>
+                    </div>
+                    <table class="table table-striped" style="width: 95%">
+                        <tbody>
+                            <tr>
+                                <td style="width: 20%"><label class="control-label">Area</label></td>
+                                <td style="width: 80%"><label class="control-label">Admission</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Record Date</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="form-value">
+                                            @Model.admissionsModel.record_date
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Reason for Admission (Pt’s Own Words)</label>
+                                        <div class="form-value">@Model.admissionsModel.complaint</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Admission Data</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Informant</label>
+                                        <div class="form-value">@Model.admissionsModel.informant</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Does patient require interpretive services? If so
+                                            make appropriate selections?
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.interpretive</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Admitted Via</label>
+                                        <div class="form-value">@Model.admissionsModel.admitted_via</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Admitted From</label>
+                                        <div class="form-value">@Model.admissionsModel.admitted_from</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Contact Person</label>
+                                        <div class="form-value">@Model.admissionsModel.contact</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Orientation</label>
+                                        <div class="form-value">@Model.admissionsModel.orient</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Belongings</label>
+                                        <div class="form-value">
+                                            @Model.admissionsModel.belong
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Valuables Disposition</label>
+                                        <div class="form-value">@Model.admissionsModel.valuables_disposition</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Valuables Comments</label>
+                                        <div class="form-value">@Model.admissionsModel.valuables_comments</div>
+                                    </div>
+                                    <label class="control-label">Does the patient have advance directives </label>
+                                    <div class="form-group">
+                                        <label class="control-label">Living Will</label>
+                                        <div class="form-value">@Model.admissionsModel.living_will_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Power of Attorney</label>
+                                        <div class="form-value">@Model.admissionsModel.power_of_attorney_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Organ Donor</label>
+                                        <div class="form-value">@Model.admissionsModel.organ_donor_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Advanced Directives Comments</label>
+                                        <div class="form-value">@Model.admissionsModel.directives_comments</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">No Past Medical History</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">No Past Medical History</label>
+                                        <div class="form-value">@Model.admissionsModel.no_past_med_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Cardiac</label>
+                                        <div class="form-value">@Model.admissionsModel.cardiac_past_med_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Respiratory</label>
+                                        <div class="form-value">@Model.admissionsModel.respiratory_past_med_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Others</label>
+                                        <div class="form-value">@Model.admissionsModel.others_past_med_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Past Medical Comments</label>
+                                        <div class="form-value">@Model.admissionsModel.past_comments</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Past Surgical History</label>
+                                        <div class="form-value">@Model.admissionsModel.past_surg_history</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Chronic Conditions</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Lung problems</label>
+                                        <div class="form-value">@Model.admissionsModel.lung_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Stomach problems</label>
+                                        <div class="form-value">@Model.admissionsModel.stomach_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Thyroid problems</label>
+                                        <div class="form-value">@Model.admissionsModel.thyroid_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Neurological problems</label>
+                                        <div class="form-value">@Model.admissionsModel.neurological_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Heart problems</label>
+                                        <div class="form-value">@Model.admissionsModel.heart_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Liver problems</label>
+                                        <div class="form-value">@Model.admissionsModel.liver_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Vision problems</label>
+                                        <div class="form-value">@Model.admissionsModel.vision_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Kidney problems</label>
+                                        <div class="form-value">@Model.admissionsModel.kidney_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Arthritis problems</label>
+                                        <div class="form-value">@Model.admissionsModel.arthritis_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Diabetes problems</label>
+                                        <div class="form-value">@Model.admissionsModel.diabetes_problems_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Chronic infection</label>
+                                        <div class="form-value">@Model.admissionsModel.chronic_infection_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Cancer</label>
+                                        <div class="form-value">@Model.admissionsModel.cancer_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other Past Medical History or Surgeries</label>
+                                        <div class="form-value">@Model.admissionsModel.others_past_med_status</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Family History</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            NSF (No significant
+                                            findings)
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.family_nsf_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Heart Disease</label>
+                                        <div class="form-value">@Model.admissionsModel.family_heart_disease_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hypertension</label>
+                                        <div class="form-value">@Model.admissionsModel.family_hypertension_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Diabetes</label>
+                                        <div class="form-value">@Model.admissionsModel.family_diabetes_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Stroke</label>
+                                        <div class="form-value">@Model.admissionsModel.family_stroke_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Seizures</label>
+                                        <div class="form-value">@Model.admissionsModel.family_seizures_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Kidney Disease</label>
+                                        <div class="form-value">@Model.admissionsModel.family_kidney_disease_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Liver Disease</label>
+                                        <div class="form-value">@Model.admissionsModel.family_liver_disease_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Family History Disease Description</label>
+                                        <div class="form-value">@Model.admissionsModel.family_desc</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Immunization Screen</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Tetanus</label>
+                                        <div class="form-value">@Model.admissionsModel.tetanus</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Influenza</label>
+                                        <div class="form-value">@Model.admissionsModel.influenza</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Pneumonia</label>
+                                        <div class="form-value">@Model.admissionsModel.pneumonia</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hepatitis B</label>
+                                        <div class="form-value">@Model.admissionsModel.hepatitisb</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">DPT</label>
+                                        <div class="form-value">@Model.admissionsModel.dpt</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Chicken Pox</label>
+                                        <div class="form-value">@Model.admissionsModel.chickenpox</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Gardasil for HPV
+                                            vaccine
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.gardasil</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Additional Comments</label>
+                                        <div class="form-value">@Model.admissionsModel.immu_comments</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Social History</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Patient Lives</label>
+                                        <div class="form-value">@Model.admissionsModel.patient_lives</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Abuse/Neglect/Exploitation
+                                            screen
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.social_abuse</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Observations-Neglect/Abus</label>
+                                        <div class="form-value">@Model.admissionsModel.social_observations</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Social Support Services</label>
+                                        <div class="form-value">@Model.admissionsModel.social_support_other_services</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other Services</label>
+                                        <div class="form-value">@Model.admissionsModel.social_support_services</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Abuse/Neglect Comments</label>
+                                        <div class="form-value">@Model.admissionsModel.social_comments</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Drug/Alcohol/Tobacoo Usage</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Social Drug Use
+                                            Frequency
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.drug_use_freq</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Time of Last Drug Usag</label>
+                                        <div class="form-value">@Model.admissionsModel.last_drug_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Alcohol Use Frequency</label>
+                                        <div class="form-value">@Model.admissionsModel.alcohol_use_freq</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Time of Last Alcohol
+                                            Usage
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.last_alcohol_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Tabocco Use Frequency</label>
+                                        <div class="form-value">@Model.admissionsModel.tabocco_use_freq</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Time of Last Tabocco
+                                            Usage
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.last_tabocco_use</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Drug/Alcohol/Tobacco Use
+                                            Comments
+                                        </label>
+                                        <div class="form-value">@Model.admissionsModel.substance_use</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Impairement/Disabilities</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Can perform ADL</label>
+                                        <div class="form-value">@Model.admissionsModel.can_perform_adl_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Can read</label>
+                                        <div class="form-value">@Model.admissionsModel.can_read_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Can Write</label>
+                                        <div class="form-value">@Model.admissionsModel.can_write_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Dentures Upper</label>
+                                        <div class="form-value">@Model.admissionsModel.use_dentures_upper_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Dentures Lower</label>
+                                        <div class="form-value">@Model.admissionsModel.use_dentures_lower_status</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Hearing</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Impaired Hearing</label>
+                                        <div class="form-value">@Model.admissionsModel.impaired_hearing_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hearing Aid Left</label>
+                                        <div class="form-value">@Model.admissionsModel.hearing_aid_left_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Hearing Aid Right</label>
+                                        <div class="form-value">@Model.admissionsModel.hearing_aid_right_status</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Vision</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Impaired Vision</label>
+                                        <div class="form-value">@Model.admissionsModel.impaired_vision_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Glasses</label>
+                                        <div class="form-value">@Model.admissionsModel.use_glasses_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Contacts</label>
+                                        <div class="form-value">@Model.admissionsModel.use_cane_status</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Ambulation</label></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Walker</label>
+                                        <div class="form-value">@Model.admissionsModel.use_walker_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Crutches</label>
+                                        <div class="form-value">@Model.admissionsModel.use_crutches_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use WheelChair</label>
+                                        <div class="form-value">@Model.admissionsModel.use_wheelchair_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Cane</label>
+                                        <div class="form-value">@Model.admissionsModel.use_cane_status</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Use Prosthesis</label>
+                                        <div class="form-value">@Model.admissionsModel.use_prosthesis_status</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Comments</label></td>
+                                <td>
+                                    <div class="form-value">@Model.admissionsModel.comments</div>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="allergies">
+                    <div class="modal fade" id="637394e9-abc8-48be-a511-48dbc0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Allergy</h4>
+                                </div>
+                                <form asp-action="AddAllergy" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="PatientAllergyRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="allergyModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.allergyModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="PatientAllergyAllergyType" class="control-label">Allergy Type</label>
+                                            <select id="allergyModel.allergy_type" class="form-control col-md-8" name="allergyModel.allergy_type"
+                                                    asp-for="@Model.allergyModel.allergy_type">
+                                                <option value="">-- Choose Allergy Type --</option>
+                                                <optgroup label="allergy_type">
+                                                    <option value="Drug">Drug</option>
+                                                    <option value="Environmental">Environmental</option>
+                                                    <option value="Food">Food</option>
+                                                    <option value="Latex">Latex</option>
+                                                    <option value="Other">Other</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="PatientAllergyAllergy" class="control-label">Allergy</label>
+                                            <textarea asp-for="allergyModel.allergy" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.allergyModel.allergy" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Allergy">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="allergy_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Allergy Type</td>
+                                    <td>Allergy</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.allergyModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Allergy/edit/@item.id/"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Admission/DeleteAllergy/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.allergy_type</td>
+                                        <td>@item.allergy</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#allergy_plus').click(function () {
+                                $('#637394e9-abc8-48be-a511-48dbc0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="medications">
+                    <div class="modal fade" id="637394e9-b6f0-4654-9a1d-48dbc0a806c9">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">Add Medication</h4>
+                                </div>
+                                <form asp-action="AddPatientMedications" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="PatientMedicationRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="patientMedicationsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PatientMedicationMedication" class="control-label">Medication</label>
+                                            <input asp-for="patientMedicationsModel.medication" class="form-control" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.medication" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PatientMedicationDose" class="control-label">Dose</label>
+                                            <input asp-for="patientMedicationsModel.dose" class="form-control" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.dose" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PatientMedicationFrequency" class="control-label">Frequency</label>
+                                            <input asp-for="patientMedicationsModel.frequency" class="form-control" />
+                                            <span asp-validation-for="@Model.patientMedicationsModel.frequency" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label for="AdmissionLivingWill">
+                                                    <input asp-for="patientMedicationsModel.taken_today" type="checkbox" />
+                                                    <span asp-validation-for="@Model.patientMedicationsModel.taken_today" class="text-danger"></span>Taken Today
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label for="AdmissionPowerOfAttorney">
+                                                    <input asp-for="patientMedicationsModel.brought_with" type="checkbox" />
+                                                    <span asp-validation-for="@Model.patientMedicationsModel.brought_with" class="text-danger"></span> Brought With
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Medication">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal --><div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a id="medication_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                    </td>
+                                    <td>Record Date</td>
+                                    <td>Medication</td>
+                                    <td>Dose</td>
+                                    <td>Frequency</td>
+                                    <td>Taken Today</td>
+                                    <td>Brought With</td>
+                                    <td>Created</td>
+                                    <td>Modified</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.patientMedicationsModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/PatientMedications/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Admission/DeletePatientMedications/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.medication</td>
+                                        <td>@item.dose</td>
+                                        <td>@item.frequency</td>
+                                        <td>@item.takentoday</td>
+                                        <td>@item.broughtwith</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#medication_plus').click(function () {
+                                $('#637394e9-b6f0-4654-9a1d-48dbc0a806c9').modal('show');
+                                return false;
+                            });
+                        });
+
+                    </script>
+                </div>
+
+
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            $(function () {
+
+                console.log(window.location.hash);
+                $('#admissionTab a[href="' + window.location.hash + '"]').tab('show');
+                // $('#medicationTab a[href="' + window.location.hash + '"]').tab('show');
+                //  $('#patientTab a[href="#home"]').tab('show');
+            });
+        </script>
+
+    </div>
+</div>

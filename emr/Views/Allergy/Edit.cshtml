@@ -4,7 +4,7 @@
         <div class="breadcrumb">
             <a href="/emr/"><i class="fa fa-home fa-lg"></i> Home</a>/<a href="/Patients">Patients</a>/
             <a href="/Patients/view/@Model.id">@Model.first_name &nbsp @Model.last_name</a>/
-            <a href="/PatientAllergys/edit/@Model.id">Edit Allergy</a>
+            <a href="/Allergy/edit/@Model.id">Edit Allergy</a>
         </div>
         <partial name="_PatientsInfo" model="@Model" />
         <div class="row-fluid">
@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label for="PatientAllergyRecordDate" class="control-label">Record Date</label>
                                     <input type="hidden" asp-for="allergyModel.id" />
-                                    <input asp-for="allergyModel.record_date" class="form-control" />
+                                    <input asp-for="allergyModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                     <span asp-validation-for="@Model.allergyModel.record_date" class="text-danger"></span>
                                 </div>
                                 <div class="form-group required">

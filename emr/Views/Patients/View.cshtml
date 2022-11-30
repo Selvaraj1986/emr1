@@ -117,7 +117,7 @@
                                     <div class="modal-body">
                                         <div class="form-group required">
                                             <label for="PatientAdmittingDiagnosisRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="admittingDiagnosesModel.record_date" class="form-control" />
+                                            <input asp-for="admittingDiagnosesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.admittingDiagnosesModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group required">
@@ -130,6 +130,7 @@
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                         <input class="btn btn-primary" type="submit" value="Add Diagnosis">
                                     </div>
+
                                 </form>
                             </div>
                             <!-- /.modal-content -->
@@ -193,7 +194,7 @@
 
                                         <div class="form-group">
                                             <label for="PatientCodeStatusRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="codeStatusesModel.record_date" class="form-control" />
+                                            <input asp-for="codeStatusesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.codeStatusesModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group required">
@@ -289,7 +290,7 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="PrecautionRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="precautionsModel.record_date" class="form-control" />
+                                            <input asp-for="precautionsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.precautionsModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
@@ -366,6 +367,7 @@
 
                     </script>
                 </div>
+
                 <div role="tabpanel" class="tab-pane" id="allergies">
                     <div class="modal fade" id="637394e9-abc8-48be-a511-48dbc0a806c9">
                         <div class="modal-dialog">
@@ -380,7 +382,7 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="PatientAllergyRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="allergyModel.record_date" class="form-control" />
+                                            <input asp-for="allergyModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.allergyModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group required">
@@ -470,7 +472,7 @@
 
                                         <div class="form-group">
                                             <label for="PatientMedicationRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="patientMedicationsModel.record_date" class="form-control" />
+                                            <input asp-for="patientMedicationsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.patientMedicationsModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
@@ -542,8 +544,8 @@
                                         <td>@item.medication</td>
                                         <td>@item.dose</td>
                                         <td>@item.frequency</td>
-                                        <td>@item.taken_today</td>
-                                        <td>@item.brought_with</td>
+                                        <td>@item.takentoday</td>
+                                        <td>@item.broughtwith</td>
                                         <td>@item.creator</td>
                                         <td>@item.modifier</td>
                                     </tr>
@@ -561,6 +563,7 @@
 
                     </script>
                 </div>
+                
                 <div role="tabpanel" class="tab-pane" id="rooms">
                     <div class="modal fade" id="637394e9-2464-4a88-8803-48dbc0a806c9">
                         <div class="modal-dialog">
@@ -575,7 +578,7 @@
                                     <div class="modal-body">
                                         <div class="form-group required">
                                             <label for="PatientRoomRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="roomsModel.record_date" class="form-control" />
+                                            <input asp-for="roomsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.roomsModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group required">
@@ -656,7 +659,7 @@
 
                                         <div class="form-group">
                                             <label for="PatientHeightRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="heightsModel.record_date" class="form-control" />
+                                            <input asp-for="heightsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.heightsModel.record_date" class="text-danger"></span>
 
                                         </div>
@@ -698,7 +701,8 @@
                             <thead>
                                 <tr>
                                     <td>
-                                        <a id="height_plus" href="#"><i class="fa fa-plus text-info fa-lg"></i></a>
+                                        <a id="height_plus" href="#">
+                                            <i class="fa fa-plus text-info fa-lg"></i></a>
                                     </td>
                                     <td>Record Date</td>
                                     <td>Height</td>
@@ -715,9 +719,9 @@
                                             <a href="/Heights/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
                                         </td>
                                         <td>@item.record_date</td>
-                                        <td>@item.height</td>
+                                        <td>@item.height_unit</td>
                                         <td>@item.creator</td>
-                                        <td>@item.modifier</td>
+                                        <td>@item.modified</td>
                                     </tr>
                                 }
                             </tbody>
@@ -784,7 +788,7 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="PatientWeightRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="weightsModel.record_date" class="form-control" />
+                                            <input asp-for="weightsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.weightsModel.record_date" class="text-danger"></span>
                                         </div>
                                         <div class="form-group required">
@@ -845,7 +849,7 @@
                                             <a href="/Weights/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
                                         </td>
                                         <td>@item.record_date</td>
-                                        <td>@item.weight</td>
+                                        <td>@item.weight_unit</td>
                                         <td>@item.creator</td>
                                         <td>@item.modifier</td>
                                     </tr>
@@ -915,9 +919,9 @@
 
                                         <div class="form-group required">
                                             <label for="DailyActivityRecordDate" class="control-label">Record Date</label>
-                                            <input asp-for="dailyActivitiesModel.record_date" class="form-control" />
+                                            <input asp-for="dailyActivitiesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
                                             <span asp-validation-for="@Model.dailyActivitiesModel.record_date" class="text-danger"></span>
-                                           
+
                                         </div>
                                         <div class="form-group">
                                             <label for="DailyActivityBathing" class="control-label">Bathing</label>
@@ -929,7 +933,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityDressing" class="control-label">Dressing</label>
-                                              <select id="dailyActivitiesModel.dressing" class="form-control col-md-8" name="dailyActivitiesModel.dressing"
+                                            <select id="dailyActivitiesModel.dressing" class="form-control col-md-8" name="dailyActivitiesModel.dressing"
                                                     asp-for="@Model.dailyActivitiesModel.dressing">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -937,7 +941,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityGrooming" class="control-label">Grooming</label>
-                                              <select id="dailyActivitiesModel.grooming" class="form-control col-md-8" name="dailyActivitiesModel.grooming"
+                                            <select id="dailyActivitiesModel.grooming" class="form-control col-md-8" name="dailyActivitiesModel.grooming"
                                                     asp-for="@Model.dailyActivitiesModel.grooming">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -945,7 +949,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityOralCare" class="control-label">Oral Care</label>
-                                              <select id="dailyActivitiesModel.oral_care" class="form-control col-md-8" name="dailyActivitiesModel.oral_care"
+                                            <select id="dailyActivitiesModel.oral_care" class="form-control col-md-8" name="dailyActivitiesModel.oral_care"
                                                     asp-for="@Model.dailyActivitiesModel.oral_care">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -953,7 +957,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityToileting" class="control-label">Toileting</label>
-                                              <select id="dailyActivitiesModel.toileting" class="form-control col-md-8" name="dailyActivitiesModel.toileting"
+                                            <select id="dailyActivitiesModel.toileting" class="form-control col-md-8" name="dailyActivitiesModel.toileting"
                                                     asp-for="@Model.dailyActivitiesModel.toileting">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -961,7 +965,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityTransferring" class="control-label">Transferring</label>
-                                              <select id="dailyActivitiesModel.transferring" class="form-control col-md-8" name="dailyActivitiesModel.transferring"
+                                            <select id="dailyActivitiesModel.transferring" class="form-control col-md-8" name="dailyActivitiesModel.transferring"
                                                     asp-for="@Model.dailyActivitiesModel.transferring">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -969,7 +973,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityWalking" class="control-label">Walking</label>
-                                              <select id="dailyActivitiesModel.walking" class="form-control col-md-8" name="dailyActivitiesModel.walking"
+                                            <select id="dailyActivitiesModel.walking" class="form-control col-md-8" name="dailyActivitiesModel.walking"
                                                     asp-for="@Model.dailyActivitiesModel.walking">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -977,7 +981,7 @@
                                             </select>
                                         </div><div class="form-group">
                                             <label for="DailyActivityEating" class="control-label">Eating</label>
-                                              <select id="dailyActivitiesModel.eating" class="form-control col-md-8" name="dailyActivitiesModel.eating"
+                                            <select id="dailyActivitiesModel.eating" class="form-control col-md-8" name="dailyActivitiesModel.eating"
                                                     asp-for="@Model.dailyActivitiesModel.eating">
                                                 <option value="">-- Choose --</option>
                                                 <option value="1">Independent</option>
@@ -986,9 +990,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="DailyActivityNotes" class="control-label">Notes</label>
-                                            <textarea asp-for="dailyActivitiesModel.notes" class="form-control" ></textarea>
+                                            <textarea asp-for="dailyActivitiesModel.notes" class="form-control"></textarea>
                                             <span asp-validation-for="@Model.dailyActivitiesModel.notes" class="text-danger"></span>
-                                           
+
                                         </div>
 
 
@@ -1033,14 +1037,14 @@
                                             <a href="/DailyActivities/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
                                         </td>
                                         <td>@item.record_date</td>
-                                        <td>@item.bathing</td>
-                                        <td>@item.dressing</td>
-                                        <td>@item.grooming</td>
-                                        <td>@item.oral_care</td>
-                                        <td>@item.toileting</td>
-                                        <td>@item.transferring</td>
-                                        <td>@item.walking</td>
-                                        <td>@item.eating</td>
+                                        <td>@item.bathingName</td>
+                                        <td>@item.dressingName</td>
+                                        <td>@item.groomingName</td>
+                                        <td>@item.oral_careName</td>
+                                        <td>@item.toiletingName</td>
+                                        <td>@item.transferringName</td>
+                                        <td>@item.walkingName</td>
+                                        <td>@item.eatingName</td>
                                         <td>@item.notes</td>
                                         <td>@item.creator</td>
                                         <td>@item.modifier</td>
@@ -1069,18 +1073,28 @@
                                     </button>
                                     <h4 class="modal-title">Add Treatment</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                    </p><form action="/emr/general/treatments/add" role="form" id="TreatmentAddForm" method="post" accept-charset="utf-8">
-                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[Treatment][patient_id]" value="4210" id="TreatmentPatientId"><div class="form-group required"><label for="TreatmentRecordDate" class="control-label">Record Date</label> <input name="data[Treatment][record_date]" class="form-control datepicker hasDatepicker" type="text" id="TreatmentRecordDate" required="required"></div><div class="form-group">
-                                            <label for="TreatmentStatus" class="control-label">Status</label> <select name="data[Treatment][status]" class="form-control" id="TreatmentStatus">
+                                <form asp-action="AddTreatments" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+
+                                        <div class="form-group required">
+                                            <label for="TreatmentRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="treatmentsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.treatmentsModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TreatmentStatus" class="control-label">Status</label>
+                                            <select id="treatmentsModel.status" class="form-control col-md-8" name="treatmentsModel.status"
+                                                    asp-for="@Model.treatmentsModel.status">
                                                 <option value="">-- Choose --</option>
                                                 <option value="S">Scheduled</option>
                                                 <option value="P">Pending</option>
                                                 <option value="C">Completed</option>
                                             </select>
-                                        </div><div class="form-group">
-                                            <label for="TreatmentType" class="control-label">Type</label> <select name="data[Treatment][type]" class="form-control" id="TreatmentType">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TreatmentType" class="control-label">Type</label>
+                                            <select id="treatmentsModel.type" class="form-control col-md-8" name="treatmentsModel.type"
+                                                    asp-for="@Model.treatmentsModel.type">
                                                 <option value="">-- Choose --</option>
                                                 <option value="Miscellaneous">Miscellaneous</option>
                                                 <option value="Occupational Therapy">Occupational Therapy</option>
@@ -1088,18 +1102,18 @@
                                                 <option value="Respiratory Therapy">Respiratory Therapy</option>
                                                 <option value="Speech Therapy">Speech Therapy</option>
                                             </select>
-                                        </div><div class="form-group"><label for="TreatmentNotes" class="control-label">Notes</label> <textarea name="data[Treatment][notes]" class="form-control" cols="30" rows="6" id="TreatmentNotes"></textarea></div><script type="text/javascript">
-                                                                                                                                                                                                                                                               $(function () {
-                                                                                                                                                                                                                                                                   $('#TreatmentRecordDate').val(getCurrentDate());
-                                                                                                                                                                                                                                                               });
-                                        </script>
-                                        <p></p>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <input class="btn btn-primary" type="submit" value="Add Treatment">
-                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TreatmentNotes" class="control-label">Notes</label>
+                                            <textarea asp-for="treatmentsModel.notes" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.treatmentsModel.notes" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Treatment">
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.modal-content -->
                         </div>
@@ -1121,7 +1135,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.treatmentsModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Treatments/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Treatments/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.status</td>
+                                        <td>@item.type</td>
+                                        <td>@item.notes</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
                             </tbody>
+
                         </table>
                     </div>
                     <script type="text/javascript">
@@ -1144,21 +1174,25 @@
                                     </button>
                                     <h4 class="modal-title">Add Consult</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                    </p><form action="/emr/general/consults/add" role="form" id="ConsultAddForm" method="post" accept-charset="utf-8">
-                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[Consult][patient_id]" value="4210" id="ConsultPatientId"><div class="form-group required"><label for="ConsultRecordDate" class="control-label">Record Date</label> <input name="data[Consult][record_date]" class="form-control datepicker hasDatepicker" type="text" id="ConsultRecordDate" required="required"></div><div class="form-group"><label for="ConsultNotes" class="control-label">Notes</label> <textarea name="data[Consult][notes]" class="form-control" cols="30" rows="6" id="ConsultNotes"></textarea></div><script type="text/javascript">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            $(function () {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $('#ConsultRecordDate').val(getCurrentDate());
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            });
-                                        </script>
-                                        <p></p>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <input class="btn btn-primary" type="submit" value="Add Consult">
-                                </div>
+                                <form asp-action="AddConsults" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+                                        <div class="form-group required">
+                                            <label for="ConsultRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="consultsModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.consultsModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ConsultNotes" class="control-label">Notes</label>
+                                            <textarea asp-for="consultsModel.notes" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.consultsModel.notes" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Consult">
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.modal-content -->
                         </div>
@@ -1178,6 +1212,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.consultsModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Consults/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Consults/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.notes</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -1201,11 +1248,18 @@
                                     </button>
                                     <h4 class="modal-title">Add Dietary</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                    </p><form action="/emr/general/dietaries/add" role="form" id="DietaryAddForm" method="post" accept-charset="utf-8">
-                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[Dietary][patient_id]" value="4210" id="DietaryPatientId"><div class="form-group required"><label for="DietaryRecordDate" class="control-label">Record Date</label> <input name="data[Dietary][record_date]" class="form-control datepicker hasDatepicker" type="text" id="DietaryRecordDate" required="required"></div><div class="form-group">
-                                            <label for="DietaryType" class="control-label">Type</label> <select name="data[Dietary][type]" class="form-control" id="DietaryType">
+                                <form asp-action="AddDietaries" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+
+                                        <div class="form-group required">
+                                            <label for="DietaryRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="dietariesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.dietariesModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DietaryType" class="control-label">Type</label>
+                                            <select id="dietariesModel.type" class="form-control col-md-8" name="dietariesModel.type"
+                                                    asp-for="@Model.dietariesModel.type">
                                                 <option value="">-- Choose --</option>
                                                 <option value="Cholesterol-Restricted">Cholesterol-Restricted</option>
                                                 <option value="Clear Liquid">Clear Liquid</option>
@@ -1222,18 +1276,20 @@
                                                 <option value="Salt-Restricted (low sodium)">Salt-Restricted (low sodium)</option>
                                                 <option value="Vegetarian ">Vegetarian </option>
                                             </select>
-                                        </div><div class="form-group"><label for="DietaryNotes" class="control-label">Notes</label> <textarea name="data[Dietary][notes]" class="form-control" cols="30" rows="6" id="DietaryNotes"></textarea></div><script type="text/javascript">
-                                                                                                                                                                                                                                                         $(function () {
-                                                                                                                                                                                                                                                             $('#DietaryRecordDate').val(getCurrentDate());
-                                                                                                                                                                                                                                                         });
-                                        </script>
-                                        <p></p>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <input class="btn btn-primary" type="submit" value="Add Dietary">
-                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DietaryNotes" class="control-label">Notes</label>
+                                            <textarea asp-for="dietariesModel.notes" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.dietariesModel.notes" class="text-danger"></span>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Dietary">
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.modal-content -->
                         </div>
@@ -1254,6 +1310,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.dietariesModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Dietaries/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Dietaries/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.type</td>
+                                        <td>@item.notes</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -1277,55 +1347,33 @@
                                     </button>
                                     <h4 class="modal-title">Add Physician Order</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                    </p><form action="/emr/general/provider_orders/add" role="form" id="ProviderOrderAddForm" method="post" accept-charset="utf-8">
-                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[ProviderOrder][patient_id]" value="4210" id="ProviderOrderPatientId"><div class="form-group required"><label for="ProviderOrderRecordDate" class="control-label">Record Date</label> <input name="data[ProviderOrder][record_date]" class="form-control datepicker hasDatepicker" type="text" id="ProviderOrderRecordDate" required="required"></div><div class="form-group required">
-                                            <label for="ProviderOrderProviderId" class="control-label">Provider</label> <select name="data[ProviderOrder][provider_id]" class="form-control" id="ProviderOrderProviderId" required="required">
+                                <form asp-action="AddProviderOrders" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+
+                                        <div class="form-group required">
+                                            <label for="ProviderOrderRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="providerOrdersModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.providerOrdersModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="ProviderOrderProviderId" class="control-label">Provider</label>
+                                            <select id="providerOrdersModel.provider_id" class="form-control col-md-8" name="providerOrdersModel.provider_id"
+                                                    asp-for="providerOrdersModel.provider_id"
+                                                    asp-items="@ViewBag.provider">
                                                 <option value="">-- Choose Provider --</option>
-                                                <option value="1137">Alexander Allen M.D.</option>
-                                                <option value="1156">Austin Sanchez M.D.</option>
-                                                <option value="1138">Christina Walker M.D.</option>
-                                                <option value="1149">Christopher Hall M.D.</option>
-                                                <option value="1159">Cynthia Wilson M.D.</option>
-                                                <option value="1148">Donald Rodriguez M.D.</option>
-                                                <option value="1146">Donna Peterson M.D.</option>
-                                                <option value="1135">Dr. Anderson</option>
-                                                <option value="1134">Dr. Payne</option>
-                                                <option value="1133">Dr. Roy</option>
-                                                <option value="1132">Dr. Smith</option>
-                                                <option value="1140">Dylan Flores M.D.</option>
-                                                <option value="1143">Edward Moore M.D.</option>
-                                                <option value="1144">Frank Ramirez M.D.</option>
-                                                <option value="1142">Harry Murphy M.D.</option>
-                                                <option value="1151">Janice Stewart M.D.</option>
-                                                <option value="1155">Jean Edwards M.D.</option>
-                                                <option value="1141">Karen Hernandez M.D.</option>
-                                                <option value="1150">Larry Scott M.D.</option>
-                                                <option value="1154">Louis Russell M.D.</option>
-                                                <option value="1483">Marna Watson MD</option>
-                                                <option value="1157">Michael Henderson M.D.</option>
-                                                <option value="1147">Peter Perez M.D.</option>
-                                                <option value="1152">Raymond Barnes M.D.</option>
-                                                <option value="1139">Ruth Brown M.D.</option>
-                                                <option value="1160">Sandra Brooks M.D.</option>
-                                                <option value="1145">Sharon Jackson M.D.</option>
-                                                <option value="1158">Tammy Kelly M.D.</option>
-                                                <option value="1136">Theresa Martinez M.D.</option>
-                                                <option value="1153">Walter Lewis M.D.</option>
                                             </select>
-                                        </div><div class="form-group required"><label for="ProviderOrderNotes" class="control-label">Notes</label> <textarea name="data[ProviderOrder][notes]" class="form-control" cols="30" rows="6" id="ProviderOrderNotes" required="required"></textarea></div><script type="text/javascript">
-                                                                                                                                                                                                                                                                                                        $(function () {
-                                                                                                                                                                                                                                                                                                            $('#ProviderOrderRecordDate').val(getCurrentDate());
-                                                                                                                                                                                                                                                                                                        });
-                                        </script>
-                                        <p></p>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <input class="btn btn-primary" type="submit" value="Add Physician Order">
-                                </div>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="ProviderOrderNotes" class="control-label">Notes</label>
+                                            <textarea asp-for="providerOrdersModel.notes" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.providerOrdersModel.notes" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Physician Order">
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.modal-content -->
                         </div>
@@ -1346,6 +1394,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.providerOrdersModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/ProviderOrders/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/ProviderOrders/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.provider_name</td>
+                                        <td>@item.notes</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -1369,21 +1431,25 @@
                                     </button>
                                     <h4 class="modal-title">Add Note</h4>
                                 </div>
-                                <div class="modal-body">
-                                    <p>
-                                    </p><form action="/emr/general/patient_notes/add" role="form" id="PatientNoteAddForm" method="post" accept-charset="utf-8">
-                                        <div style="display:none;"><input type="hidden" name="_method" value="POST"></div><input type="hidden" name="data[PatientNote][patient_id]" value="4210" id="PatientNotePatientId"><div class="form-group"><label for="PatientNoteRecordDate" class="control-label">Record Date</label> <input name="data[PatientNote][record_date]" class="form-control datepicker hasDatepicker" type="text" id="PatientNoteRecordDate"></div><div class="form-group required"><label for="PatientNoteNotes" class="control-label">Notes</label> <textarea name="data[PatientNote][notes]" class="form-control" cols="30" rows="6" id="PatientNoteNotes" required="required"></textarea></div><script type="text/javascript">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            $(function () {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $('#PatientNoteRecordDate').val(getCurrentDate());
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            });
-                                        </script>
-                                        <p></p>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <input class="btn btn-primary" type="submit" value="Add Note">
-                                </div>
+                                <form asp-action="AddNotes" asp-route-id="@Model.id">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="PatientNoteRecordDate" class="control-label">Record Date</label>
+                                            <input asp-for="notesModel.record_date" class="form-control datepicker" type="text" id="datepicker" />
+                                            <span asp-validation-for="@Model.notesModel.record_date" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="PatientNoteNotes" class="control-label">Notes</label>
+                                            <textarea asp-for="notesModel.note" class="form-control"></textarea>
+                                            <span asp-validation-for="@Model.notesModel.note" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <input class="btn btn-primary" type="submit" value="Add Note">
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.modal-content -->
                         </div>
@@ -1403,15 +1469,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="/emr/general/PatientNotes/edit/1607"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;<a href="/emr/general/PatientNotes/delete/1607" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
-                                    </td>
-                                    <td>11/15/2022</td>
-                                    <td>test</td>
-                                    <td>Selvaraj Kandeepan 11/15/2022 08:32:12</td>
-                                    <td>Selvaraj Kandeepan 11/15/2022 08:32:24</td>
-                                </tr>
+                                @foreach (var item in Model.notesModelAll)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/Notes/edit/@item.id"><i class="fa fa-edit text-info fa-lg"></i></a>&nbsp;&nbsp;
+                                            <a href="/Notes/delete/@item.id" onclick="if (confirm(&quot;Are you sure to delete this record?&quot;)) { return true; } return false;"><i class="fa fa-trash text-danger fa-lg"></i></a>
+                                        </td>
+                                        <td>@item.record_date</td>
+                                        <td>@item.note</td>
+                                        <td>@item.creator</td>
+                                        <td>@item.modifier</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -1431,6 +1501,7 @@
 
         <script type="text/javascript">
             $(function () {
+
                 console.log(window.location.hash);
                 $('#patientTab a[href="' + window.location.hash + '"]').tab('show');
                 // $('#medicationTab a[href="' + window.location.hash + '"]').tab('show');
